@@ -15,6 +15,9 @@ Django服务器安装配置。
 修改配置文件httpd.conf：  
 Listen 8002
 
+# 安装Microsoft Visual C++ 14.0 is required
+Microsoft Visual C++ 14.0 is required. Get it with [Microsoft Visual C++ Build Tools](https://visualstudio.microsoft.com/downloads/)  
+
 # 安装mod_wsgi  
 	pip install mod_wsgi
 
