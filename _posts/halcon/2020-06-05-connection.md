@@ -6,7 +6,7 @@ author: Michael
 categories: Halcon
 ---
 
-#Description:
+# Description:
 通过灰度值选取Region，并通过connettion指令分割Region，最后显示所有的Region单元
 
 	read_image (Image, 'particle') 

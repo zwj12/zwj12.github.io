@@ -6,6 +6,6 @@ author: Michael
 categories: Halcon
 ---
 
-#Description:
+# Description:
 
 求灰度图最大，最小灰度值

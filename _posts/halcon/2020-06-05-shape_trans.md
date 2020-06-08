@@ -6,7 +6,7 @@ author: Michael
 categories: Halcon
 ---
 
-#Description:
+# Description:
 
 通过情况下，通过Connection函数获取的区域都是不规则的，测试可以使用凸包形状转换函数，该函数类似于把分割后的区域用一个橡皮筋包围起来，然后获取该橡皮筋的Region
 

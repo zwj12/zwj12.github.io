@@ -11,9 +11,13 @@ Django服务器安装配置。
 
 # 安装Apache  
 下载地址：[Apache 2.4.43 Win64](https://www.apachelounge.com/download/)，解压到C盘根目录C:\Apache24。  
-安装服务：httpd.exe -k install  
-修改配置文件httpd.conf：  
-Listen 8002
+安装服务：
+
+	httpd.exe -k install  
+
+修改配置文件httpd.conf：
+
+	Listen 8002
 
 # 安装Microsoft Visual C++ 14.0 is required
 Microsoft Visual C++ 14.0 is required. Get it with [Microsoft Visual C++ Build Tools](https://visualstudio.microsoft.com/downloads/)  
@@ -21,9 +25,10 @@ Microsoft Visual C++ 14.0 is required. Get it with [Microsoft Visual C++ Build T
 # 安装mod_wsgi  
 	pip install mod_wsgi
 
-运行指令mod_wsgi-express module-config  
-修改Apache配置文件httpd.conf：
+# 运行指令
+	mod_wsgi-express module-config
 
+# 修改Apache配置文件httpd.conf
 	#添加mod_wsgi.so模块,这三行是上面命令行中显示出来的
 	LoadFile "c:/program files/python38/python38.dll"
 	LoadModule wsgi_module "c:/program files/python38/lib/site-packages/mod_wsgi/server/mod_wsgi.cp38-win_amd64.pyd"

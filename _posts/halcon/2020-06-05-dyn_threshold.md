@@ -6,7 +6,7 @@ author: Michael
 categories: Halcon
 ---
 
-#Description:
+# Description:
 
 先平均值滤波图像，然后以该图像为基准，选择动态灰度值差异大的区域，最后分割Regin，可以通过面积获取需要的区域。
 
