@@ -21,3 +21,5 @@ categories: Halcon
 3. select_obj
 4. obj_to_integer
 5. integer_to_obj
+6. crop_part
+7. tile_images_offset 
