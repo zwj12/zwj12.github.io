@@ -12,6 +12,10 @@ categories: Halcon
 
 	* 关闭显示
 	dev_update_window ('off')
+	dev_update_off
+	dev_clear_window
+	* 改变窗口位置和大小
+	dev_set_window_extents 
 	dev_set_color ('red')
 
 设置图像显示区域，设置后窗口的坐标原点会跟着改变。可以设置为负数
@@ -26,7 +30,15 @@ categories: Halcon
 
 	disp_arrow
 
+显示十字架
+
+	disp_cross
+
 打开新的窗口，获取窗口句柄，显示图像
 
 	dev_open_window
 	dev_display
+
+写文字
+
+	disp_message

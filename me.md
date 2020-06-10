@@ -5,3 +5,5 @@ permalink: /about/contact/
 ---
 
 Hi, it's me!
+
+	bundle exec jekyll serve
