@@ -8,3 +8,5 @@ categories: Halcon
 
 - get_grayval
 - set_grayval
+- get_contour_xld
+- 
