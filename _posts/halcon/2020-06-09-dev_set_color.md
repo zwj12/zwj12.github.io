@@ -23,6 +23,7 @@ categories: Halcon
 
 设置线的宽度
 
+	dev_set_draw('margin') 
 	dev_set_line_width
 
 
