@@ -13,3 +13,9 @@ categories: Halcon
 - affine_trans_point_3d: 通过空间转换矩阵计算中另一个坐标系下坐标值
 - gen_object_model_3d_from_points: 通过坐标创建对象
 - visualize_object_model_3d: 显示对象
+- vector_angle_to_rigid
+- affine_trans_contour_xld
+- hom_mat2d_identity: 生成一个2D变化矩阵
+- hom_mat2d_translate:
+- hom_mat2d_rotate:
+- affine_trans_pixel:

@@ -17,14 +17,25 @@ categories: Halcon
 	* 改变窗口位置和大小
 	dev_set_window_extents 
 	dev_set_color ('red')
+	* PC (program counter)
+	dev_update_pc
+	dev_update_var
+
+设置线的宽度
+
+	dev_set_line_width
+
 
 设置图像显示区域，设置后窗口的坐标原点会跟着改变。可以设置为负数
 
 	dev_set_part 
 
-设置文字的位置
+设置文字的位置，字体，打印文件到窗口
 
+	set_display_font
 	set_tposition
+	disp_message
+	write_string 
 
 设置箭头的位置和方向
 
@@ -39,6 +50,10 @@ categories: Halcon
 	dev_open_window
 	dev_display
 
-写文字
+显示圆弧
 
-	disp_message
+	disp_arc 
+
+显示直线
+
+	disp_line

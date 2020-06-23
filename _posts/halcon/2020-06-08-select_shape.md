@@ -15,3 +15,5 @@ categories: Halcon
 	select_shape(ConnectedRegions,Eyes,['area','max_diameter'],'and',[500,30.0],[1000,50.0])
 
 - select_contours_xld
+- select_shape_std
+- circularity:

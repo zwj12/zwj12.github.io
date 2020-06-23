@@ -9,6 +9,7 @@ categories: Halcon
 - gen_image_const: 创建一个空的图
 - gen_circle: 生成一个圆region
 - paint_region: 把region画到图片中
+- gen_contour_polygon_xld: 通过多边形生成亚像素轮廓
 
 示例代码：
 
@@ -22,3 +23,8 @@ categories: Halcon
 	paint_region (Circle, Image1, ImageResult, 255, 'fill')
 	gray_erosion_rect (ImageResult, Erosion, 3, 3)
 	gray_dilation_rect (ImageResult, Opening, 3, 3)
+	gen_contour_polygon_xld
+
+- gen_ellipse_contour_xld 
+- tuple_gen_const
+- gen_tuple_const
