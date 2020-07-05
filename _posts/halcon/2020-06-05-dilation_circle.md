@@ -23,3 +23,4 @@ categories: Halcon
 - opening_rectangle1
 - erosion1
 - difference: 可以对比膨胀后和再腐蚀后的region，算出边界
+- fill_up

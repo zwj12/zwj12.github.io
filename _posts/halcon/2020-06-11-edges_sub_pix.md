@@ -18,6 +18,7 @@ categories: Halcon
 - lines_facet
 - threshold_sub_pix
 - segment_contours_xld: 把XLD轮廓分解成直线、圆或椭圆
+- segment_contour_attrib_xld
 - smooth_contours_xld: 
 - split_contours_xld
 - gen_polygons_xld:
@@ -29,7 +30,6 @@ categories: Halcon
 - gen_rectangle2_contour_xld
 - gen_circle_contour_xld
 - select_contours_xld: 
-- get_contour_xld:
 - edges_color
 - edges_image
 - sobel_amp
@@ -40,6 +40,7 @@ categories: Halcon
 - get_contour_xld
 - get_contour_attrib_xld
 - get_contour_global_attrib_xld:
+- get_regress_params_xld.
 - derivate_gauss
 - zoom_image_factor
 - draw_xld

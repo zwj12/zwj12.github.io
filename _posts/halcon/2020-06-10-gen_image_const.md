@@ -28,3 +28,4 @@ categories: Halcon
 - gen_ellipse_contour_xld 
 - tuple_gen_const
 - gen_tuple_const
+- paint_gray: 把一幅图画到另一幅图中，类似于重叠图片，把原始图片盖住

@@ -49,6 +49,7 @@ categories: Halcon
 打开新的窗口，获取窗口句柄，显示图像
 
 	dev_open_window
+	dev_open_window_fit_image
 	dev_display
 
 显示圆弧
@@ -58,3 +59,4 @@ categories: Halcon
 显示直线
 
 	disp_line
+	colored_display

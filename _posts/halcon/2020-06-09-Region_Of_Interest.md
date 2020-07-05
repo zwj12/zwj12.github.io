@@ -29,4 +29,5 @@ categories: Halcon
 - gen_measure_arc, gen_measure_rectangle2
 - write_region, read_region
 - threshold
-- gen_image1, region_to_bin, get_image_pointer1
+- gen_image1, get_image_pointer1
+- region_to_bin: 把Region转化为二进制Byte图像

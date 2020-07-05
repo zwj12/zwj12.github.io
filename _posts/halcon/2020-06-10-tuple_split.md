@@ -12,3 +12,4 @@ categories: Halcon
 	tuple_split (p_CalibFrame, '[],', Substrings)
 
 - tuple_number: 把字符串转换为数字
+- tuple_sort_index: 元组排序，获得排序后的索引序列
