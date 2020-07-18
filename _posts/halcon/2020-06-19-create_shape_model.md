@@ -9,6 +9,7 @@ categories: Halcon
 形状匹配
 
 - find_shape_model
+- find_scaled_shape_model
 - set_shape_model_origin
 - set_shape_model_clutter
 - inspect_shape_model
@@ -16,3 +17,7 @@ categories: Halcon
 - get_shape_model_contours
 - vector_angle_to_rigid
 - affine_trans_contour_xld
+- write_shape_model
+- read_shape_model
+- find_component_model
+- get_found_component_model
