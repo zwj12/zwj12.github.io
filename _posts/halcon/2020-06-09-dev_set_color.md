@@ -60,3 +60,11 @@ categories: Halcon
 
 	disp_line
 	colored_display
+
+显示变量
+
+	dev_inspect_ctrl
+
+输入字符串
+
+	read_string 

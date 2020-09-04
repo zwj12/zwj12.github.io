@@ -92,5 +92,7 @@ categories: Halcon
 
 如果是本地，使用下述地址
 
+![边缘检测结果图 in Jekyll](../../assets/edges_sub_pix/edges.png)
+
 	(../../assets/edges_sub_pix/edges.png)
 
