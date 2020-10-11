@@ -52,7 +52,19 @@ categories: robot
 ![日志级别](/assets/logging/level.png)
 ![日志级别](../../assets/logging/level.png)
 
-我们可以在***main*** 函数中定义当前程序的日志记录级别，数值代表日志级别的优先级，如我们定义当前系统的日志级别为***WARNING*** ，那么我们在程序中Logging变量使用可选参数指定日志级别为***DEBUG*** 和***INFO*** 的日志字符串文本就**不会**记录到日志文件中。而日志级别可选参数指定为***WARNING*** ，***ERRORING*** 和***CRITICAL*** 的日志字符串文本**会**记录到日志文件中。默认的日志级别为***WARNING*** 。
+数值代表日志级别的优先级，在使用Logging指令输出日志内容时，我们可以指定当前日志内容的日志级别。例如有些日志只有在调试时才需要记录，在系统正常运行时不需要记录，此时就可以使用Logging\DEBUG可选参数限定该日志为调试信息；如果有些信息只是为了方便在程序运行时展示给用户，便于用户获知当前系统的运行状态，那么就可以使用Logging\INFO可选参数；只有当程序出现错误时，才需要记录的日志可以使用Logging\ERRORING可选参数。Logging指令默认的日志级别为***WARNING*** 。
+
+### 设置全局日志级别
+
+一共有两个指令用于设置全局日志级别：
+
+	!用于控制示教器用户界面显示的日志内容，显示日志级别大于等于WARNING的所有日志
+	SetTPHandlerLogLevel\WARNING
+
+	!用于控制日志文档中需要写入的日志内容，记录日志级别大于等于DEBUG的所有日志 
+	SetFileHandlerLogLevel\DEBUG
+
+我们可以在***main*** 函数中定义当前程序的日志记录级别，如我们定义当前系统的日志级别为***WARNING*** ，那么我们在程序中Logging变量使用可选参数指定日志级别为***DEBUG*** 和***INFO*** 的日志字符串文本就**不会**记录到日志文件中。而日志级别可选参数指定为***WARNING*** ，***ERRORING*** 和***CRITICAL*** 的日志字符串文本**会**记录到日志文件中。
 
 ### 日志类别
 
@@ -283,7 +295,7 @@ categories: robot
 ![自动导入模块](/assets/logging/logging.png)
 ![自动导入模块](../../assets/logging/logging.png)
 
-- 点击添加Logging指令，默认为INFO日志级别，通过ABC输入按钮，输入日志文本，完成指令的添加。
+- 点击添加Logging指令，默认为WARNING日志级别，通过ABC输入按钮，输入日志文本，完成指令的添加。
 
 ![自动导入模块](/assets/logging/instruction.png)
 ![自动导入模块](../../assets/logging/instruction.png)
