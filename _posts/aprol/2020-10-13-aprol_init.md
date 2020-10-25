@@ -52,3 +52,19 @@ IP设置方法：
 
 DNS设置方法：  
 ![日志文件夹](/assets/aprol/dns.png)
+
+进入Operator和Runtime系统前，需要用户登录，该用户和Engin系统的用户是不一样的。Engin系统的用户是用于开发项目使用的，一般只有开发者有。Operator用户是系统运行时的登录用户，理论上工厂里所有工作人员都需要一个Operator账号。在Engin系统中，打开Operator Manager软件管理用户，用户是通过用户组管理权限的。  
+![日志文件夹](/assets/aprol/OperatorManager.png)
+
+进入Operator系统后，会有很多界面和按钮，每一个界面和按钮均可以设置独立的权限。如果要单独设置权限，那么首先需要在Operator Rights界面创建权限，然后对于Graphic Block页面上的输出管脚关联权限名，最后在Operator Manager软件里设置Operator用户组下对应该权限名的权限。  
+![日志文件夹](/assets/aprol/OperatorRights.png)  
+![日志文件夹](/assets/aprol/GraphicBlockIO.png)  
+![日志文件夹](/assets/aprol/GroupRights.png)
+
+在添加Operator权限组后，重新编译项目，有可能会发现runtime配置上会出现感叹号报警，*双击打开后显示Invalid use of operator right*警告信息，此时可能是由于系统提供的库没有引用和编译导致的，这些库即使没有被包含在项目中，但是Operator Manager软件也会包含，所以导致报警。如果需要消除该报警，那么需要引用该库，然后把对应的库编译一下就不会再出现这些报警信息了。  
+![日志文件夹](/assets/aprol/Invaliduseoperatorright.png)  
+![日志文件夹](/assets/aprol/OperatorRights.png)  
+![日志文件夹](/assets/aprol/ProjectLibraries.png)
+
+Operator和Runtime系统的默认登录账号可以通过下图设置，Operator和Runtime都需要分别设置：  
+![日志文件夹](/assets/aprol/defUser.png)  
