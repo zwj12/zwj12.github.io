@@ -21,3 +21,5 @@ Hi, it's me!
 	jekyll new myblog	
 
 	https://zwj12.github.io/
+
+如需在MarkdownPad2中正常显示图片，只要同时打开根目录下一个md文件即可。

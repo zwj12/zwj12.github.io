@@ -12,6 +12,8 @@ LoginServer的默认用户名是：Startup，默认密码是：BuR1.admin
 
 其它的用户名和密码还有：aprol（BuR1.aprol）
 
+OPCUA的默认用户名是：OpcUaSystemOperator，默认密码是：.OpcUaSystemOperator
+
 Aprol系统MariaDB数据库的默认用户名是*buradmin*，默认密码是*.buradmin* 
 
 Aprol系统chronolog数据库的默认用户名是*SqlSystemOperator*，默认密码是*.SqlSystemOperator* 
@@ -68,3 +70,7 @@ DNS设置方法：
 
 Operator和Runtime系统的默认登录账号可以通过下图设置，Operator和Runtime都需要分别设置：  
 ![日志文件夹](/assets/aprol/defUser.png)  
+
+由于VirtualBox软件的限制，虚拟机无法通过计算机名访问主机，但是OPCUA服务器又需要通过主机名地址访问，否则会报BadCertificateHostNameInvalid错误。为了突破这个限制，可以通过修改Aprol的linux系统中hosts配置文件映射IP地址和计算机名实现该功能：  
+![日志文件夹](/assets/aprol/hosts.png)  
+![日志文件夹](/assets/aprol/UaExpertAddServer.png)  
