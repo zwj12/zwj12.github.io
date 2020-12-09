@@ -23,7 +23,7 @@ WebService程序存储的cookie路径如下：
 
 对于PDA和UCB模块，每次只有检测到上升沿的信号才会运行一次，也就是说，如果把trigger信号一直设置为1，并不能使PDA和UCB模块持续不断的运行下去。对于需要被动触发一个信号的上升沿和下降沿，可以使用X_TRIG(IEC61131_3)模块，该模块会在检测到信号值变化时，输出一个周期的脉冲信号，当这个周期结束后，它会自动置为0。这其实也就意味着，PDA和UCB模块的最小运行时间是两个周期。
 
-可以把JasperReport嵌入到DisplayCenter页面上：  
+可以把JasperReport嵌入到DisplayCenter页面上，**注意**，免费版不支持viewAsDashboardFrame=true功能：  
 http://10.0.2.2:8082/jasperserver/flow.html?_flowId=viewReportFlow&reportUnit=%2Freports%2Frobot_elog&j_username=jasperadmin&j_password=jasperadmin&decorate=no&viewAsDashboardFrame=true&IPAddress=10.0.2.2&SystemName=Controller_Aprol  
 http://127.0.0.1:8082/jasperserver/flow.html?_flowId=viewReportFlow&reportUnit=%2Freports%2Frobot_oee&j_username=jasperadmin&j_password=jasperadmin&decorate=no&viewAsDashboardFrame=true&IPAddress=10.0.2.2&SystemName=Controller_Aprol2&OEEFrom=2020-11-28&OEETo=2020-11-29
 
