@@ -52,3 +52,6 @@ Windows系统下，MariaDB默认会把数据库和表名的大写字母改为小
 
 OPCUA中的变量可以单独设置操作员权限，但是默认该选项隐藏起来了，需要在设置上侧的滑动条移至右侧才能看到：  
 ![日志文件夹](/assets/aprol/OPCUAOperatorRight.png)
+
+如果文本框显示有阴影，除了背景阴影导致外，还可能是设置原因导致的，把文本框DynamicBorder属性选中，去掉WordBreak属性就可以了。  
+![日志文件夹](/assets/aprol/DynamicBorder.png)

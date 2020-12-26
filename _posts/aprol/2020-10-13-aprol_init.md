@@ -74,3 +74,7 @@ Operator和Runtime系统的默认登录账号可以通过下图设置，Operator
 由于VirtualBox软件的限制，虚拟机无法通过计算机名访问主机，但是OPCUA服务器又需要通过主机名地址访问，否则会报BadCertificateHostNameInvalid错误。为了突破这个限制，可以通过修改Aprol的linux系统中hosts配置文件映射IP地址和计算机名实现该功能：  
 ![日志文件夹](/assets/aprol/hosts.png)  
 ![日志文件夹](/assets/aprol/UaExpertAddServer.png)  
+
+Aprol系统运行时，保存的文件默认路径是：
+
+	/home/aprolsys/APROL/AprolLoader/runtime/
