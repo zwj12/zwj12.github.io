@@ -6,7 +6,7 @@ class Application(Frame):
         super().__init__()
         self.master = master
         self.master.title("Encoder Parameter Utility")
-        self.master.geometry('1068x681')
+        self.master.geometry('500x500')
         self.create_widgets()
 
     def create_widgets(self):
@@ -25,6 +25,8 @@ class Application(Frame):
         self.profiles_per_frame.set(500)
         self.scan_length = DoubleVar()
         self.scan_length.set(10000)
+        self.encoder_type = IntVar()
+        self.encoder_type.set(4)
         
         self.radian_per_meter = DoubleVar()
         self.cycles_per_meter = IntVar()
@@ -58,6 +60,12 @@ class Application(Frame):
         self.text_transmission_gear_ratio = Entry(width=30, textvariable=self.transmission_gear_ratio) 
         self.text_transmission_gear_ratio.grid(row=row, column=1)
 
+        row += 1
+        self.radio_encoder_type_single = Radiobutton(width=30, text="Single Channel", variable=self.encoder_type, value=1) 
+        self.radio_encoder_type_single.grid(row=row, column=0)
+        self.radio_encoder_type_dual = Radiobutton(width=30, text="Dual Channel", variable=self.encoder_type, value=4) 
+        self.radio_encoder_type_dual.grid(row=row, column=1)
+        
         row += 1
         self.label_encoder_cycles = Label(text="Encoder Cycle Count")
         self.label_encoder_cycles.grid(row=row, column=0)
@@ -129,8 +137,8 @@ class Application(Frame):
         rpm = rtgr/ir
         cpm = epc*(rpm/(self.pi.get()*2))
         dpc = 1000/cpm
-        spl = int(self.expected_accuracy.get()/dpc*4)
-        accuracy = dpc / 4 * spl
+        spl = int(self.expected_accuracy.get()/dpc*self.encoder_type.get())
+        accuracy = dpc / self.encoder_type.get() * spl
         dpf = accuracy * self.profiles_per_frame.get()
         nf = round(self.scan_length.get()/dpf) + 1
         self.radian_per_meter.set(rpm)        
