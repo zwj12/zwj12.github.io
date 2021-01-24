@@ -12,3 +12,6 @@ The reference point is used for searching the spot seam's position. It must be h
 ![日志文件夹](/assets/develop/ReferencePoint.png)  
 
 # How to search the reference point
+
+# How to save the model data
+The whole model data includes a search json file and N scan json files.
