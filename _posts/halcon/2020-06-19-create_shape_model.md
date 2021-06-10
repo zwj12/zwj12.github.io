@@ -21,3 +21,8 @@ categories: Halcon
 - read_shape_model
 - find_component_model
 - get_found_component_model
+
+
+# create_shape_model_xld #
+
+The operator create_shape_model_xld creates a shape model used for matching from the XLD contours passed in Contours. The XLD contours **represent the gray value edges** of the object to be searched for.
