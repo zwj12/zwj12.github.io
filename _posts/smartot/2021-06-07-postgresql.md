@@ -26,6 +26,7 @@ categories: SmartOT
 	#
 	
 	# Install the public key for the repository (if not done previously):
+	sudo apt install curl
 	sudo curl https://www.pgadmin.org/static/packages_pgadmin_org.pub | sudo apt-key add
 	
 	# Create the repository configuration file:
@@ -46,6 +47,14 @@ categories: SmartOT
 	
 	# Configure the webserver, if you installed pgadmin4-web:
 	sudo /usr/pgadmin4/bin/setup-web.sh
+
+	# 注意不是https
+	http://127.0.0.1/pgadmin4
+
+# Docker安装pgAdmin4
+	sudo docker pull dpage/pgadmin4
+	sudo docker run -d -p 5433:80 --name pgadmin4 -e PGADMIN_DEFAULT_EMAIL=michael-weijin.zhu@cn.abb.com -e PGADMIN_DEFAULT_PASSWORD=.michael dpage/pgadmin4
+	http://127.0.0.1:5433
 
 # 数据类型
 	char：固定长度字符串，pgadmin中无法修改此类型的长度，默认长度为1.
