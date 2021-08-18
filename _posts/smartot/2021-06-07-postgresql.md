@@ -1,11 +1,24 @@
 ---
 layout: post
-title: "postgresql"
+title: "PostgreSQL"
 date: 2021-06-07 09:09:00 +0800
 author: Michael
 categories: SmartOT
 ---
 
+# 用户名密码
+	# pgAdmin
+	IP: http://10.0.2.15:8000
+	username: admin@abb.com
+	password: .edge
+	# postgresql	
+	database: postgres
+	username: postgres
+	password: .edge
+
+![日志文件夹](/assets/smartot/dockerpgadmin.png) 
+
+	
 # 连接SmartOT中postgresql数据库 #
 	psql -h 10.0.2.15 -U postgres
 	psql -h 10.0.2.15 -U postgres smartot4
@@ -50,6 +63,10 @@ categories: SmartOT
 
 	# 注意不是https
 	http://127.0.0.1/pgadmin4
+
+# Docker安装PostgreSQL
+	sudo docker run -p 5432:5432 --name postgres -e POSTGRES_PASSWORD=Quarter0 -d postgres
+	#Host: 172.17.0.1
 
 # Docker安装pgAdmin4
 	sudo docker pull dpage/pgadmin4
