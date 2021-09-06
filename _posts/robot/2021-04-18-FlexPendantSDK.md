@@ -14,6 +14,7 @@ categories: Robot
 # 创建新页面
 命名格式为TpsFormxxxx
 	using ABB.Robotics.Tps.Windows.Forms;
+
 	using ABB.Robotics.Tps.Taf;
 	using ABB.Robotics.Tps.Resources;
 	using ABB.Robotics.Controllers.IOSystemDomain;
@@ -25,16 +26,22 @@ categories: Robot
 	{
 	    public class TpsFormScanData : TpsForm, ITpsViewActivation
 	    {
+	        #region Fields
+	
+        	private const string CURRENT_MODULE_NAME = "TpsFormScanData";
 	        private TpsResourceManager _tpsRm = null;
 	        private RWSystem rwSystem = null;
-	        private ScanData scanData = null;
+	        private TemplateData templateData;
+	
+	        #endregion
 			...
 	
 	        public TpsFormScanData(TpsResourceManager rM, RWSystem rwSystem, ScanData scanData)
 	        {
+				InitializeComponent();
+
 	            try
-	            {
-	                InitializeComponent();
+	            {	                
 	                this._tpsRm = rM;
 	                this.rwSystem = rwSystem;
 	                this.scanData = scanData;
@@ -51,9 +58,80 @@ categories: Robot
 	                    , MessageBoxIcon.Hand, MessageBoxButtons.OK);
 	            }
 	        }
+
+	       #region ITpsViewActivation Members
+	
+	        public void Activate()
+	        {
+	            this.templateData.RefreshData(this.rwSystem);
+	            this.Invoke(this.UpdateGUI);
+	            //throw new NotImplementedException();
+	        }
+	
+	        public void Deactivate()
+	        {
+	            throw new NotImplementedException();
+	        }
+	
+	        #endregion
+	
+	
+	        private void UpdateGUI(object sender, EventArgs e)
+	        {
+	            try
+	            {
+	                this.menuItem_Apply.Enabled = false;
+	            }
+	            catch (Exception ex)
+	            {
+	                GTPUMessageBox.Show(this.Parent.Parent, null
+	                    , string.Format("An unexpected error occurred when reading RAPID data 'weld data'. Message {0}", ex.ToString())
+	                    , "System Error"
+	                    , System.Windows.Forms.MessageBoxIcon.Hand
+	                    , System.Windows.Forms.MessageBoxButtons.OK);
+	            }
+	        }
+	
+	        private void menuItem_Close_Click(object sender, EventArgs e)
+	        {
+	            this.CloseMe();
+	        }
+	
+	        private void menuItem_Apply_Click(object sender, EventArgs e)
+	        {
+	            try
+	            {
+	                this.menuItem_Apply.Enabled = false;
+	            }
+	            catch (Exception ex)
+	            {
+	                GTPUMessageBox.Show(this.Parent.Parent, null
+	                    , string.Format("An unexpected error occurred when applying RAPID data. Message {0}", ex.ToString())
+	                    , "System Error"
+	                    , System.Windows.Forms.MessageBoxIcon.Hand
+	                    , System.Windows.Forms.MessageBoxButtons.OK);
+	            }
+	        }
+	
+	        private void menuItem_Refresh_Click(object sender, EventArgs e)
+	        {
+	            this.templateData.RefreshData(this.rwSystem);
+	            this.Invoke(this.UpdateGUI);
+	        }
+	
+	        private void dataControl_PropertyChanged(object sender, PropertyChangedEventArgs e)
+	        {
+	            this.menuItem_Apply.Enabled = true;
+	        }
+	
+	        void InitializeTexts()
+	        {
+	
+	        }
 			...
 
-![日志文件夹](/assets/robot/FlexPendantSDK/NewFormView.png) 
+![日志文件夹](/assets/robot/FlexPendantSDK/NewFormView.png)   
+![日志文件夹](/assets/robot/FlexPendantSDK/MenuItem.png) 
 
 # Post Build Event
 	call "C:\Program Files (x86)\Microsoft Visual Studio 9.0\\VC\vcvarsall.bat" x86
