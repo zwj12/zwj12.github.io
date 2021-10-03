@@ -15,3 +15,7 @@ categories: VM
 	//For Windows
 	sdelete64 -z c:\
 	VBoxManage.exe modifyhd "D:\105 Virtual machine\Win7VisualStudio2008\Win7VisualStudio2008.vdi" --compact
+
+# 修改UUID
+	C:\Program Files\Oracle\VirtualBox>VBoxManage internalcommands sethduuid "D:\105 Virtual machine\Win7EPLAN\Win7EPLAN.vdi"
+	UUID changed to: 43932de1-3135-4145-a056-9207d3fadb5f
