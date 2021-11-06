@@ -7,7 +7,7 @@ categories: robot
 ---
 
 # 锁定轴Locked Axis
-在通过RobotStudio创建机械结构时，最后一个连杆上必须有一个Frame，且这个Frame的Z轴必须与最后一个轴的轴线运动方向重合，否则就会产生一个额外的锁定轴。  
+在通过RobotStudio创建机械结构时，最后一个连杆上必须有一个**Frame**，且这个Frame的Z轴必须与最后一个轴的轴线运动方向重合，否则就会产生一个额外的锁定轴。  
 ![日志文件夹](/assets/robot/LockedAxis.png)
 
 # Calibration
