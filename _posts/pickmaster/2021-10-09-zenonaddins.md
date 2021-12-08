@@ -6,6 +6,10 @@ author: Michael
 categories: PickMaster
 ---
 
+# 存储位置
+Add-Ins are copied to the following folder when **creating** the Runtime files for a project: ...\RT\FILES\zenon\system\AddInStore\...  
+The Add-Ins are installed in the following folder when **starting** the Runtime: ...\RT\FILES\zenon\system\AddInCache\...  
+
 # Debug Runtime Add-Ins
 	...\RT\FILES\zenon\system\AddInCache\...
 1. Programming Interfaces -> Add-Ins中删除原先的dll，使用Visual Studio项目中编译的bin -> Debug目录下的dll替换掉原先的dll。
@@ -30,12 +34,14 @@ categories: PickMaster
 	    {
 	        #region Fields
 	        private Timer timerUpdateZenonRuntime ;
+	        private IProject zenonProject;
 	        #endregion
 	
 	        #region IProjectServiceExtension implementation
 	
 	        public void Start(IProject context, IBehavior behavior)
-	        {    
+	        {
+	            this.zenonProject = context;
 	            timerUpdateZenonRuntime = new Timer();
 	            timerUpdateZenonRuntime.Interval = 1000;
 	            timerUpdateZenonRuntime.Elapsed += this.OnTimedEvent;
@@ -125,3 +131,8 @@ Deploy的目录为`C:\ProgramData\ABB\zenon800\EditorAddInCache\DotNet\addins`
 # Error
 启动项目后，如果Visual Studio报如下错误，应该是公司防火墙的问题，切换到iboss或者使用手机热点，可以避免该窗口弹出。
 ![日志文件夹](/assets/pickmaster/zenonserverfailed.png)  
+
+# 变量类型映射
+Zenon的变量类型和C#的变量类型并不是一一对应的，对应关系如下：
+1. Zenon INT -> C# System.Double
+2. Zenon BOOL -> C# System.Double
