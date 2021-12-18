@@ -36,3 +36,8 @@ View很好理解，就是界面。
 4. 定义View: 添加View数据绑定，DataContext="{Binding Source={StaticResource Locator},Path=Main}"
 5. 定义命令，在ViewModel中添加命令AddUserCommand = new RelayCommand(ExecuteAddUser);
 6. 命令绑定：<Button Command="{Binding AddUserCommand}">
+
+# GalaSoft.MvvmLight.CommandWpf or GalaSoft.MvvmLight.Command
+在WPF中，如果需要使用RelayCommand的CanExecute功能，需要使用GalaSoft.MvvmLight.CommandWpf命名空间，原因见
+[https://galasoft.ch/posts/2015/01/re-enabling-the-commandmanager-feature-with-relaycommand-in-mvvm-light-v5/](https://galasoft.ch/posts/2015/01/re-enabling-the-commandmanager-feature-with-relaycommand-in-mvvm-light-v5/ "CommandWpf")  
+当然也可以强制使用RaiseCanExecuteChanged引发控件重新判断是否可用。
