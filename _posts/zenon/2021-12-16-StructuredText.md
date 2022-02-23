@@ -44,3 +44,17 @@ CTRL+SPACE
 # WAIT & WAIT_TIME
 - If the expression is TRUE, the program continues normally.
 - If the expression is FALSE, then the execution of the program is suspended up to the next PLC cycle. The boolean expression will be checked again during next cycles until it becomes TRUE. The execution of other programs is not affected.当等待的条件为false时，程序会挂起，直到在后续的某一次执行周期中条件为true时，才继续执行该程序。
+
+# 常量 Constant expressions
+1. BOOL: TRUE, FALSE
+2. SINT: SINT#1
+3. USINT/BYTE: USINT#1
+4. INT: INT#1
+5. UINT/WORD: UINT#1
+6. DINT: 1, 2#1(binary), 8#1(octal), 16#1(hexadecimal)
+7. UDINT/DWORD: UDINT#1
+8. LINT: LINT#1
+9. REAL: 1.0, 1F10, 1E10
+10. LREAL: LREAL#1.0, LREAL#1F10, LREAL#1E10
+11. TIME: TIME#3s, T#1h1m1s1ms
+12. STRING: 'hello', 'I$'m here'

@@ -1,0 +1,7 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<UpdatePackageManifest version="1.1">
+  <UpdatePackage name="rw" type="FORCED">
+    <PreCheckFiles>*.rmf;updatepackage_manifest.xml</PreCheckFiles>
+    <Backup restore="NO" mode="CFG;MODULE" />
+  </UpdatePackage>
+</UpdatePackageManifest>
