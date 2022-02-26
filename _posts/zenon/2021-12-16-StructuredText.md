@@ -58,3 +58,14 @@ CTRL+SPACE
 10. LREAL: LREAL#1.0, LREAL#1F10, LREAL#1E10
 11. TIME: TIME#3s, T#1h1m1s1ms
 12. STRING: 'hello', 'I$'m here'
+
+# R_TRIG上升沿触发函数
+1. 第一个时钟周期：设置CLK为TRUE，当外部设备或者手动设置CLK为TRUE时，程序只会在下一个时钟周期开始时，才会真正把CLK的值设置为TRUE。例如如果时钟周期为5s，用户在1s时把CLK手动设置为TRUE，此时在调试界面，会看到CLK会短时闪烁一下为TRUE，然后紧接着就又变回原先的FALSE了，因为此周期内的CLK确实为FALSE，当该周期结束后，在下一个5s的周期开始时，CLK才会真正的变为TRUE。
+2. 第二个时钟周期：CLK变为TRUE。此周期内，MyTrigger.Q并不会变为TRUE。
+3. 第三个时钟周期：MyTrigger.Q变为TRUE。
+4. 第四个时钟周期：MyTrigger.Q变为FALSE。
+5. 第五个时钟周期：如果第三个时钟周期CLK变为FALSE，第四个时钟周期变为TRUE，那么第五个时钟周期MyTrigger.Q会继续变为TRUE
+
+	MyTrigger (CLK);
+	Q := MyTrigger.Q;
+
