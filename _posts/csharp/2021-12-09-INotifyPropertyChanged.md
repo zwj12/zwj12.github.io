@@ -52,3 +52,6 @@ categories: CSharp
     {
         _log4Net.ErrorFormat("文件:{0} 行号:{1} 方法名:{2},消息:{3}", sourceFilePath, sourceLineNumber, memberName, message);
     }
+
+#WPF控件主动刷新数据
+     this.listBoxControllerID.Items.Refresh();

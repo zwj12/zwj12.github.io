@@ -15,3 +15,6 @@ categories: PickMaster
 4. 离开机器人监控区域，如下图的2和1，该区域的产品如果已经被机器人跟踪抓取（在第三步获取到数据），产品会被抓取和放置。但是如果产品没有被机器人跟踪，那么这个产品会被放弃。
  
 ![日志文件夹](/assets/pickmaster/startwindow.png) 
+
+# Activation and Deactivation only done from Rapid
+RW6.13的Motion -> Mechanical Unit中有一个新的设置：Activation and Deactivation only done from Rapid，该设置可以确保程序在移动指针时，外轴不会被自动激活或者停用

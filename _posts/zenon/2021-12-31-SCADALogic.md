@@ -24,3 +24,7 @@ categories: zenon
 	printf ('zModeRequestCmd=%ld; zModeCurrent=%ld;', zModeRequestCmd, zModeCurrent);
 
 ![日志文件夹](/assets/zenon/LogPrintf.png)  
+
+# 导出Fieldbus变量CSV文件分隔符修改
+需要把List separator修改为分号;  
+![日志文件夹](/assets/zenon/FieldbusImportCSVListSeparator.png)  

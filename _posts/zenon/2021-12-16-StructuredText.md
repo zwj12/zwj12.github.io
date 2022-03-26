@@ -69,3 +69,25 @@ CTRL+SPACE
 	MyTrigger (CLK);
 	Q := MyTrigger.Q;
 
+# Timer - TON
+
+    tonReseting(gbSTS_RESETTING,T#5s);
+    IF tonReseting.Q=TRUE THEN            
+        for iArrayDim := 1 to 10 do
+            if ((gbSTS_RESETTING)
+                and (Pm_Sts_Getrobotdetailstatus[iArrayDim-1] = 23 
+                    or Pm_Sts_Getrobotdetailstatus[iArrayDim-1] = 17)
+                and Pml_Robot_Relevance[iArrayDim-1] = True
+                and (Pm_Sts_Getcontrollerdetailstatus[iArrayDim-1] = 2
+                    or Pm_Sts_Getcontrollerdetailstatus[iArrayDim-1] = 3
+                    or Pm_Sts_Getcontrollerdetailstatus[iArrayDim-1] = 1))
+            then
+                Pm_Cmd_StopProject := True;
+                Pm_Cmd_CloseProject := True; 
+                Pml_Cmd_Stop := True;        
+            end_if;           
+        end_for;             
+    END_IF;  
+
+# String
+字符串常量使用单引号： 'Hello World!'，不能使用双引号。

@@ -36,3 +36,6 @@ PROFINET networks achieve speeds of 100 Mbit/s or even 1 Gbit/s and higher. The 
 显示消息读取，输入的字节数组可以与instance长度不一致，如果字节数组短，则后面的数据会被截取掉。
 ## eipWriteAttr
 显示消息写入，输入的字节数组必须与instance长度一致，不一致会报错。
+
+# Zenon EtherNet/IP Setting file
+C:\ProgramData\ABB\SQL2012\166e715b-e6a8-400a-86b0-6c7af6c69a0a\FILES\straton\PACK_ML\__K5BusEIPS.cfg
