@@ -91,3 +91,17 @@ CTRL+SPACE
 
 # String
 字符串常量使用单引号： 'Hello World!'，不能使用双引号。
+
+# IN OUT
+1. IN: 函数内容修改变量，对外部不起作用，反而因为每个循环，外部都会传一次参数，导致内部修改IN变量其实不起作用（可能单个循环内部起作用，没意义）。  
+2. IN_OUT： 内部修改变量，会直接同时修改外部变量。  
+3. 从目前测试看, structure变量作为参数时，是通过传地址引用实现的，所以结构体变量只能作为IN或IN_OUT变量，不能作为OUT变量。Sub-programs and UDFBs may have parameters on input or ou output. Output parameters cannot be arrays of data structures but only single data. When an array is passed as an inupt parameter to a UDFB, it is considered as INOUT so the UDFB can read or write in it. The support of complex data types for input parameters may depend on selected compiling options.
+4. complex data: array, structure变量作为IN时，内部时作为INOUT变量的，也就是说，即使定义为IN，内部也是可以修改结构体变量值的。
+
+# Sub program - function
+Alternatively, if a sub-program has one and only one output parameter, it can be called as a function in ST language:  
+
+	Res := MySubProg (i1, i2);
+
+# 程序执行过程
+对于TON，CLK_BLINK之类的程序，需要让其每个cycle都一行一次，这样他们FB的out才会刷新数据，如果在某个循环启动TON，然后在后面的循环中使用if语句屏蔽TON的运行，那么TON的out变量是不会自动刷新的。这是PLC程序的原理，需要确保每个cycle都要运行一遍程序。

@@ -41,3 +41,20 @@ View很好理解，就是界面。
 在WPF中，如果需要使用RelayCommand的CanExecute功能，需要使用GalaSoft.MvvmLight.CommandWpf命名空间，原因见
 [https://galasoft.ch/posts/2015/01/re-enabling-the-commandmanager-feature-with-relaycommand-in-mvvm-light-v5/](https://galasoft.ch/posts/2015/01/re-enabling-the-commandmanager-feature-with-relaycommand-in-mvvm-light-v5/ "CommandWpf")  
 当然也可以强制使用RaiseCanExecuteChanged引发控件重新判断是否可用。
+
+# 多线程更新UI
+需要首先在主线程初始化DispatcherHelper。然后就可以在子线程中使用DispatcherHelper.CheckBeginInvokeOnUI修改UI了。
+
+	DispatcherHelper.Initialize();
+
+    private void WebSocketOpened()
+    {
+        this.SolutionModel.IsWebSocketConnected = true;           
+        DispatcherHelper.CheckBeginInvokeOnUI(() =>
+        {
+            this.WebSocketConnectCommand.RaiseCanExecuteChanged();
+            this.WebSocketCloseCommand.RaiseCanExecuteChanged();
+        });
+
+        this.SolutionModel.RIS2WebSocketMessage = "Web socket is opened.";
+    }
