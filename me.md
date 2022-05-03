@@ -33,6 +33,9 @@ Hi, it's me!
 	bundle exec jekyll serve
 	
 # 升级github-pages
+	//打开Gemfile文件，修改`gem "github-pages", "~> 209", group: :jekyll_plugins`这一行的版本号。
+	//如最新的版本号为226，那么就修改为：`gem "github-pages", "~> 226", group: :jekyll_plugins`
+	//查看最新版本的网址为：https://pages.github.com/versions/
 	bundle update github-pages
 
 # 缺少组件时，在jekyll项目目录下运行bundle install自动安装缺失的组件
