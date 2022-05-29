@@ -3,7 +3,7 @@ layout: post
 title: "INotifyPropertyChanged"
 date: 2021-12-09 19:36:00 +0800
 author: Michael
-categories: CSharp
+categories: WPF
 ---
 
 # INotifyPropertyChanged
@@ -53,5 +53,8 @@ categories: CSharp
         _log4Net.ErrorFormat("文件:{0} 行号:{1} 方法名:{2},消息:{3}", sourceFilePath, sourceLineNumber, memberName, message);
     }
 
-#WPF控件主动刷新数据
+# WPF控件主动刷新数据
      this.listBoxControllerID.Items.Refresh();
+
+# 类中包含类
+如果类中包含类，如果需要实现双向绑定，那么包含类也需要实现INotifyPropertyChanged接口，猜测原理是当WPF控件绑定包含类时，因为使用了.运算符，所以可以从绑定名称中获知绑定的字段为包含类，那么直接把该依赖属性订阅包含类的INotifyPropertyChanged.PropertyChangedEventHandler事件。

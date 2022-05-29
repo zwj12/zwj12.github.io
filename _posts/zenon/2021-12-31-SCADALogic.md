@@ -12,6 +12,11 @@ categories: zenon
 
 # Profiled IO Variables
 代码编译时，会计算程序中变量的总数量，zenonRT共享给Logic的数量，Logic共享给zenon的数量。  
+
+1. Profiled variables - STRATON: Logic共享给zenon的数量
+2. Profiled variables - ZENONRT: zenonRT共享给Logic的数量
+3. <I/Os>: 包含Logic共享给zenon的数量和zenonRT共享给Logic的数量，且还包含Profinet，EtherNet/IP总线的数量，但是不包含modbus变量的数量，不清楚为什么不包含Modbus的变量数量。
+
 ![日志文件夹](/assets/zenon/ProfiledIOVariables.png)   
 
 # Structure Variable

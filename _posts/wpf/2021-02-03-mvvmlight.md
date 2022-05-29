@@ -28,7 +28,6 @@ View很好理解，就是界面。
 # WPF中MVVM的解耦方式
 在WPF的MVVM模式中，View和ViewModel之间数据和命令的关联都是通过绑定实现的，绑定后View和ViewModel并不产生直接的依赖。具体就是View中出现数据变化时会尝试修改绑定的目标。同样View执行命令时也会去寻找绑定的Command并执行。反过来，ViewModel在Property发生改变时会发个通知说“名字叫XXX的Property改变了，你们这些View中谁绑定了XXX也要跟着变啊!”，至于有没有View收到是不是做出变化也不关心。ViewModel中的Command脱离View就更简单了，因为Command在执行操作过程中操作数据时，根本不需要操作View中的数据，只需要操作ViewModel中的Property就可以了，Property的变化通过绑定就可以反映到View上。这样在测试Command时也不需要View的参与。这样一来ViewMode可以在完全没有View的情况下测试，View也可以在完全没有ViewModel的情况下测试。
 
-
 #MVVMLight开发过程
 1. 定义Model: UserInfoModel:ObservableObject（Model/UserInfoModel）
 2. 定义ViewModel: MainViewModel:ViewModelBase (ViewModel/MainViewModel)
@@ -36,6 +35,16 @@ View很好理解，就是界面。
 4. 定义View: 添加View数据绑定，DataContext="{Binding Source={StaticResource Locator},Path=Main}"
 5. 定义命令，在ViewModel中添加命令AddUserCommand = new RelayCommand(ExecuteAddUser);
 6. 命令绑定：<Button Command="{Binding AddUserCommand}">
+
+# 数据绑定到ViewModel
+
+    <Window.DataContext>
+        <Binding Path="Main" Source="{StaticResource Locator}"></Binding>
+    </Window.DataContext>
+
+    <Page.DataContext>
+        <Binding Path="RIS2Utility" Source="{StaticResource Locator}"></Binding>
+    </Page.DataContext>
 
 # GalaSoft.MvvmLight.CommandWpf or GalaSoft.MvvmLight.Command
 在WPF中，如果需要使用RelayCommand的CanExecute功能，需要使用GalaSoft.MvvmLight.CommandWpf命名空间，原因见
@@ -58,3 +67,25 @@ View很好理解，就是界面。
 
         this.SolutionModel.RIS2WebSocketMessage = "Web socket is opened.";
     }
+
+# MVVM模式下关闭窗口
+可以通过绑定参数，把窗口对象传给viewmodel类。  
+
+    <Button IsDefault="True" Command="{Binding OKCommand}"  CommandParameter="{Binding RelativeSource={RelativeSource FindAncestor,AncestorType={x:Type Window}}}" >_OK</Button>
+
+
+    public RelayCommand<System.Windows.Window> OKCommand { get; private set; }
+
+	OKCommand = new RelayCommand<System.Windows.Window>(ExecuteOK);
+
+    public void ExecuteOK(System.Windows.Window window)
+    {
+        window.DialogResult = true;
+        window.Close();
+    }
+
+# INotifyPropertyChanged接口
+ViewModel继承关系ViewModelBase : ObservableObject : INotifyPropertyChanged，所以ViewModel中可以使用Set函数通过INotifyPropertyChanged接口通知客户端属性值已更改。
+
+# ICommand接口
+RelayCommand ： ICommand
