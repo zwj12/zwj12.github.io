@@ -7,10 +7,11 @@ categories: CSharp
 ---
 
 # Entity Framework Core安装
-dotnet add package Microsoft.EntityFrameworkCore.SqlServer
-dotnet add package Microsoft.EntityFrameworkCore.Design
-Install-Package Microsoft.EntityFrameworkCore.Tools
-Install-Package Microsoft.EntityFrameworkCore.Sqlite
+1. dotnet add package Microsoft.EntityFrameworkCore.SqlServer
+1. Install-Package Microsoft.EntityFrameworkCore.Sqlite
+1. .NET Core CLI工具： dotnet add package Microsoft.EntityFrameworkCore.Design，该程序在使用CLI工具需要安装，推荐使用Visual Studio包管理工具，不要使用这个。
+1. Visual Studio包管理工具： Install-Package Microsoft.EntityFrameworkCore.Tools， 该工具会随ASP.NET Core自动安装，但不会随Microsoft.EntityFrameworkCore.SqlServer安装，所以如果创建控制台，WPF等程序时，还需要安装该包。
+
 
 # 实体框架
 实体框架由适用于 Visual Studio 的 EF Tools 以及 EF 运行时组成。  
@@ -18,10 +19,10 @@ Install-Package Microsoft.EntityFrameworkCore.Sqlite
 1. 适用于 Visual Studio 的 Entity Framework Tools 包括 EF Designer 和 EF 模型向导，对于 Database First 工作流和 Model First 工作流是必需的。 EF Tools 包含在所有最新版本的 Visual Studio 中。
 1. 实体框架的最新版本作为 EntityFramework NuGet 包提供。`Install-Package EntityFramework`
 
-# Code First数据迁移
-1. Enable-Migrations
+# Visual Studio包管理工具Code First，Cord First又称为数据迁移
+1. Enable-Migrations，Enable-Migrations is obsolete. Use Add-Migration to start using Migrations.
 2. 修改代码，添加属性
-3. Add-Migration AddUrl 
+3. Add-Migration InitialCreate
 4. Update-Database
 
 # 新建数据库
@@ -155,3 +156,80 @@ Install-Package Microsoft.EntityFrameworkCore.Sqlite
         }
 
 
+# WPF Add-Migration ConnectionStrings
+如果要在WPF中使用Microsoft.EntityFrameworkCore.Tools指令，则需要使用appsettings.json存储连接字符串。需要使用`Microsoft.Extensions.Configuration.Json`包。  
+
+## appsettings.json
+	{
+	  "ConnectionStrings": {
+	    "DefaultConnection": "Server=(localdb)\\mssqllocaldb;Database=ERPCoreAppDB;Trusted_Connection=True;MultipleActiveResultSets=true"
+	  }
+	}
+
+## DbContext.OnConfiguring
+    public class ERPModelContainer : DbContext
+    {
+        public DbSet<Product> Products { get; set; }
+        public DbSet<Order> Orders { get; set; }
+
+        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        {
+            IConfigurationRoot configuration = new ConfigurationBuilder().AddJsonFile("appsettings.json").Build();
+            optionsBuilder.UseSqlServer(configuration.GetConnectionString("DefaultConnection"));
+        }
+
+    }
+
+## Host主机依赖注入
+
+	using System.Windows;
+	using ERPCoreApp.Model;
+	using Microsoft.EntityFrameworkCore;
+	using Microsoft.Extensions.DependencyInjection;
+	using Microsoft.Extensions.Hosting;
+	
+	namespace ERPCoreApp
+	{
+	    /// <summary>
+	    /// Interaction logic for App.xaml
+	    /// </summary>
+	    public partial class App : Application
+	    {
+	        public IHost host;
+	
+	        public App()
+	        {
+	            var builder = Host.CreateDefaultBuilder();
+	
+	            builder.ConfigureServices((hostContext, services) =>
+	            {
+	                services.AddDbContext<ERPModelContainer>((options) =>
+	                     options.UseSqlServer("name=ConnectionStrings:DefaultConnection"));
+	            });
+	
+	            host = builder.Build();
+	
+	            //host.RunAsync();
+	        }
+	    }
+	}
+	
+
+	namespace ERPCoreApp.Model
+	{
+	    public class ERPModelContainer : DbContext
+	    {
+	        public DbSet<Product> Products { get; set; }
+	        public DbSet<Order> Orders { get; set; }
+	
+	        public ERPModelContainer(DbContextOptions<ERPModelContainer> options): base(options)
+	        {
+	        }
+	
+	    }
+	}
+
+
+    IServiceScope serviceScope=((App)(App.Current) ).host.Services.CreateScope();
+    ERPModelContainer eRPModelContainer =  serviceScope.ServiceProvider.GetRequiredService<ERPModelContainer>();
+    int i=  eRPModelContainer.Products.Count();

@@ -191,3 +191,51 @@ MVVMLight使用了一个应用程序资源实例化了一个.Net类ViewModelLoca
             window.Close();
         }
     }
+
+# ServiceProvider, ServiceCollection, IServiceCollection
+	using Microsoft.Extensions.DependencyInjection
+
+	void Microsoft.Toolkit.Mvvm.DependencyInjection.Ioc.ConfigureServices(IServiceProvider serviceProvider)
+
+	ServiceCollection : IServiceCollection
+
+	ServiceCollectionServiceExtensions -> IServiceCollection AddSingleton<TService> (this IServiceCollection services) where TService : class
+
+	ServiceCollectionContainerBuilderExtensions -> ServiceProvider BuildServiceProvider(this IServiceCollection services)
+
+	T Microsoft.Toolkit.Mvvm.DependencyInjection.Ioc.GetRequiredService<T>() where T : class
+
+# Messenger消息
+## 手动注册和发送消息
+	//注册消息
+	WeakReferenceMessenger.Default.Register<string>(this, OnReceive);
+    private void OnReceive(object recipient, string message)
+    {
+        ReceiveMessage = message;
+    }
+
+	发送消息
+	WeakReferenceMessenger.Default.Send("Hello");
+
+## 使用接口自动注册和发送消息
+	public class ProductViewModel : ObservableRecipient, IRecipient<String>
+	{
+		public string ReceiveMessage { get; set; }
+
+        public ProductViewModel()
+        {
+            //WeakReferenceMessenger.Default.Register<string>(this, OnReceive);
+            this.IsActive = true;
+        }
+
+        public void Receive(string message)
+        {
+            ReceiveMessage = message;
+        }
+		
+	}
+
+## 手动解除注册消息
+只有手动注册时，才需要手动解除注册消息，当自动注册时，只需要通过设置IsActive为true或false，自动注册或解除消息。  
+
+	this.Unloaded += (sender, e) => WeakReferenceMessenger.Default.UnregisterAll(this);

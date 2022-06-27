@@ -15,3 +15,7 @@ Assembly Information对照如下：
 
 # 获取dll版本
 	System.Reflection.Assembly.GetExecutingAssembly().GetName().Version.ToString()
+
+# 获取程序基目录，非dll目录
+	System.AppDomain.CurrentDomain.BaseDirectory //D:\mycode\
+	Application.StartupPath //D:\mycode
