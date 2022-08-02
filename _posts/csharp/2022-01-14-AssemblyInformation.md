@@ -19,3 +19,6 @@ Assembly Information对照如下：
 # 获取程序基目录，非dll目录
 	System.AppDomain.CurrentDomain.BaseDirectory //D:\mycode\
 	Application.StartupPath //D:\mycode
+
+# 获取当前工作目录
+	System.Environment.CurrentDirectory
