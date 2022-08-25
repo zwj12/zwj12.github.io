@@ -46,3 +46,9 @@ HttpWebRequest的默认CookieContainer是null，但是HttpClientHandler的默认
 
 # HttpClient
 因为HttpClient很多属性是非线程安全的，所以一旦调用了第一条request指令后，大多数属性就不能再修改了，例如设置Credentials，如果需要修改验证的用户名和密码，需要重新new一个HttpClient。
+
+# HttpUtility
+提供在处理 Web 请求时用于编码和解码 URL 的方法。
+
+## HttpUtility.UrlDecode(String)
+将已编码用于 URL 传输的字符串转换为解码的字符串。

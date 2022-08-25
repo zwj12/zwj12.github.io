@@ -22,3 +22,24 @@ categories: WPF
 
 # 绑定自己
 	{Binding ActualHeight, RelativeSource={RelativeSource Self}}
+
+# 触发器修改背景颜色
+使用控件模板触发器，当修改button的IsEnabled值时，触发修改背景颜色。
+
+    <Button Name="BtnConncetion" IsEnabled="True" Content="Connect" Cursor="Hand" Foreground="White" Click="BtnConncetion_Click" Width="74"  Height="36" HorizontalAlignment="Right" Margin="0,-60,37,0"  >
+        <Button.Template>
+            <ControlTemplate TargetType="{x:Type Button}">
+                <Border BorderBrush="{TemplateBinding Control.BorderBrush}" Background="{TemplateBinding Button.Background}" BorderThickness="0" CornerRadius="5,5,5,5" Name="PART_Background">
+                    <ContentPresenter Content="{TemplateBinding ContentControl.Content}" HorizontalAlignment="Center" VerticalAlignment="Center" />
+                </Border>
+                <ControlTemplate.Triggers >
+                    <Trigger Property="Button.IsEnabled" Value="True">
+                        <Setter Property="Button.Background" Value="#33CCFF"/>
+                    </Trigger >
+                    <Trigger Property="Button.IsEnabled" Value="False">
+                        <Setter Property="Button.Background" Value="#CCCCCC"/>
+                    </Trigger >
+                </ControlTemplate.Triggers >
+            </ControlTemplate>
+        </Button.Template>
+    </Button>
