@@ -8,6 +8,9 @@ categories: CPP
 
 # 设置项目工作目录和命令行参数
 可以通过Configuration Properties -> Debugging -> Working Directory / Command Arguments 设置C++程序运行时的工作目录和命令行参数。  
+
+	Working Directory: $(OutDir)
+
 ![日志文件夹](/assets/cpp/DebuggingCommandArguments.png)  
 
 # CustomBuildStep
