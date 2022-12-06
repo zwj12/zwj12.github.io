@@ -39,3 +39,13 @@ PROFINET networks achieve speeds of 100 Mbit/s or even 1 Gbit/s and higher. The 
 
 # Zenon EtherNet/IP Setting file
 C:\ProgramData\ABB\SQL2012\166e715b-e6a8-400a-86b0-6c7af6c69a0a\FILES\straton\PACK_ML\__K5BusEIPS.cfg
+
+# 类(class)，实例(instance)，属性（attribute）
+CIP对象由 类(class)，实例(instance)，属性（attribute）构成。每个类可以有多个实例，每个实例可以有多个属性。（举例：一个类叫做 男人。这个 男人 类可以有实例 王二狗，李铁柱。王二狗 可以包含属性年龄，身高，体重。在读取或写入的数据的时候，协议中就要申明要操作的是哪个类的哪个实例的哪个属性。）类（class）是一组代表相同系统组件的对象。实例（instance）是该类中的某个特定对象。每个实例可以有自己特有的属性。
+
+- CIP 网络中的每个节点都有节点地址，在EtherNet/IP 网络中，该地址即为设备的IP地址。
+- CIP中每个类，实例，属性都有其对应的ID (Class ID, Instance ID, Attribute ID)。
+- CIP中使用服务代码来明确操作指令。
+- 类ID分为两个部分，公共对象（范围：0x0000–0x0063, 0x00F0–0x02FF），厂家自定义对象（范围：0x0064–0x00C7, 0X0300-0X04FF）。其它范围为预留部分。
+- 实例ID也分为两个部分，公共实例（范围：0x0001–0x0063,0x00C8-0x02FF），厂家自定义实例（范围：0x0064-0xxC7,0x0300-0x04FF）。其它范围为预留部分。
+- 属性ID,公共属性（范围：0x0000–0x0063，0x0100–0x02FF，0x0500–0x08FF），厂家自定义属性（范围：0x0064–0x00C7，0x0300–0x04FF，0x000–0x0CFF）。

@@ -16,3 +16,9 @@ windows系统有两个证书管理工具**certlm.msc**和**certmgr.msc**，前�
 # RobotStudio首次连接保存证书
 新安装的RobotStudio第一次连接OmniCore控制柜时，需要保存证书。建议选择第二个。  
 ![日志文件夹](/assets/robot/connectandremembercertificate.png)   
+
+# RobotStudio保存控制器证书位置
+RobotStudio首次连接OmniCore后，如果保存证书，证书信息保存在文件`C:\Users\CNMIZHU7\AppData\Local\ABB\RobotStudio\ControllerWhitelist.dat`中，貌似这个目录是RobApi控制的，如果电脑上没有安装RobotStudio，会没有这个目录，不清楚RobApi或PCSDK还能不能正常工作？  
+
+![日志文件夹](/assets/robot/ControllerWhitelist.png)  
+

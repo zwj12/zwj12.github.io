@@ -7,7 +7,7 @@ categories: CSharp
 ---
 
 # 方案一：使用Resources文件实现
-这个方案也不支持动态切换语言，只支持直接使用字符串，不支持TypeConverter，甚至也不支持除字符串以外的其它XAML内置类型（即Boolea,Char,Decimal,Single,Double,Int16,Int32,Int64,TimeSpan,Uri,Byte,Array等类型）。例如使用Label.resx中名为Background值为 #880000FF 的字符串为Grid.Background实现本地化。但是非常简单。
+这个方案的基础版本也不支持动态切换语言，只支持直接使用字符串，不支持TypeConverter，甚至也不支持除字符串以外的其它XAML内置类型（即Boolea,Char,Decimal,Single,Double,Int16,Int32,Int64,TimeSpan,Uri,Byte,Array等类型）。例如使用Label.resx中名为Background值为 #880000FF 的字符串为Grid.Background实现本地化。但是非常简单。
 
 ## 智能感应
 使用方案一基础版，支持全部智能感应。但是如果使用方案一的增强版，智能感应不支持XAML，但是支持语法检查，如果没有该字段，会有波浪线出现，支持在代码中感应。
@@ -65,43 +65,36 @@ categories: CSharp
     {
         public static ApplicationResources Current { get; private set; }
 
-        public Resources Labels { get; set; }
+        public PickMasterUtility.Properties.Resources TextResources { get; private set; }
 
-        private string language;
-        public string Language
+        private XmlLanguage language;
+        public XmlLanguage Language
         {
             get { return language; }
             set
             {
-                if (language == value)
-                    return;
-
-                language = value;
-                var cultureInfo = new CultureInfo(value);
-                Thread.CurrentThread.CurrentUICulture = cultureInfo;
-                Thread.CurrentThread.CurrentCulture = cultureInfo;
-                Resources.Culture = cultureInfo;
-
-                RaiseProoertyChanged();
+                if (language != value)
+                {
+                    language = value;
+                    ChangeCulture(language.GetSpecificCulture());
+                }
             }
         }
 
         public ApplicationResources()
         {
             Current = this;
-            Labels = new Resources();
+            TextResources = new PickMasterUtility.Properties.Resources();
         }
 
         public event PropertyChangedEventHandler PropertyChanged;
 
-        public void ChangeCulture(System.Globalization.CultureInfo cultureInfo)
+        public void ChangeCulture(CultureInfo cultureInfo)
         {
             Thread.CurrentThread.CurrentUICulture = cultureInfo;
-            Thread.CurrentThread.CurrentCulture = cultureInfo;
-            Resources.Culture = cultureInfo;
+            //Thread.CurrentThread.CurrentCulture = cultureInfo;
 
-            if (Current != null)
-                Current.RaiseProoertyChanged();
+            Current?.RaiseProoertyChanged();
         }
 
         public void RaiseProoertyChanged()
@@ -139,6 +132,19 @@ categories: CSharp
     {
         ApplicationResources.Current.ChangeCulture(CultureInfo.InstalledUICulture);
     }
+
+### 设置WPF控件语言区域格式
+如果只是设置了线程的CurrentUICulture或CurrentCulture，并不会改变WPF控件的语言区域，比如如果设置了德国，且TextBox控件绑定了double数据类型，那么此时小数点不会自动转化为逗号，需要设置TextBox控件的语言属性才能自动转化，当然可以直接设置窗口的语言的属性，这样这个窗口的子控件会全部匹配该窗口的语言属性。
+
+	<Page x:Class="PickMasterUtility.View.RIS2UtilityPage"
+	      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+	      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+	      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+	      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+	      xmlns:local="clr-namespace:PickMasterUtility.View"
+	      mc:Ignorable="d" 
+	      d:DesignHeight="1000" d:DesignWidth="1400"
+	      Title="RIS2UtilityPage" Language="{Binding Language, Source={StaticResource R}}">
 
 ### 设计时支持
 在应用程序资源的Application.Resources中可以直接设置语言，可以在设计时自动切换语言。
@@ -259,3 +265,18 @@ CultureInfo.InstalledUICulture
 可以把应用程序的NeutralLanaguage设置为主要语言。可以提高ResourceManager性能。
 
 ![日志文件夹](/assets/wpf/NeutralLanaguage.png)  
+
+# XmlLanguage
+
+	//Language="zh", 如果没有定义详细的文化区域，GetSpecificCulture会找一个最接近的文化
+	XmlLanguage.GetSpecificCulture(); // =zh-CN
+	XmlLanguage.GetEquivalentCulture(); // =zh
+
+# 全局设置WPF控件语言区域
+    FrameworkElement.LanguageProperty.OverrideMetadata(typeof(FrameworkElement), new FrameworkPropertyMetadata(System.Windows.Markup.XmlLanguage.GetLanguage(Thread.CurrentThread.CurrentUICulture.IetfLanguageTag)));
+
+# CultureInfo and CurrentUICulture
+当我们修改文化区域属性时，尽量只修改线程的CurrentUICulture，谨慎修改线程的CurrentCulture，因为CurrentCulture会直接改变ToString函数输出的字符串格式，比如小数点变为逗号，此时如果需要持久化这些数据，就好导致用逗号保存小数，如果切换语言后解析数据时，可能就会由于小数点的符号不同而报错。
+
+    Thread.CurrentThread.CurrentUICulture = cultureInfo;
+    //Thread.CurrentThread.CurrentCulture = cultureInfo;

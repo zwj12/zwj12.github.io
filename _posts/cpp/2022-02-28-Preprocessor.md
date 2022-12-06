@@ -14,6 +14,11 @@ categories: CPP
 # pragma once
 pragma once可以放置在头文件中任何位置，但是通常推荐放置在开头位置。
 
+#pragma comment(lib,“Ws2_32.lib”)
+表示链接Ws2_32.lib这个库。
+
+	#pragma comment(lib,"rpcrt4.lib")
+
 # define多个字符串
 如果使用define定义宏，如果宏变量后面显示多个字符串，这些字符串会自动被连接起来。
 

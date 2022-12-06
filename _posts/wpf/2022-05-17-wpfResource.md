@@ -33,6 +33,7 @@ MergedDictionaries是ResourceDictionary对象的一个集合，可使用该集�
                 <ResourceDictionary>
                     <vm:ViewModelLocator x:Key="Locator" d:IsDataSource="True" xmlns:vm="clr-namespace:PickMasterUtility.ViewModel" />
                 </ResourceDictionary>
+				<ResourceDictionary Source="Resources/ConverterDictionary.xaml" />
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </Application.Resources>

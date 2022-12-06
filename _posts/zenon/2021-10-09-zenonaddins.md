@@ -136,3 +136,141 @@ Deploy的目录为`C:\ProgramData\ABB\zenon800\EditorAddInCache\DotNet\addins`
 Zenon的变量类型和C#的变量类型并不是一一对应的，对应关系如下：
 1. Zenon INT -> C# System.Double
 2. Zenon BOOL -> C# System.Double
+
+# 订阅单个变量变化事件
+
+    public void Subscribe(IProject context)
+    {
+        ZenonProject = context;
+
+        ZenonProject.OnlineVariableContainerCollection.Delete(containerName);
+        container = ZenonProject.OnlineVariableContainerCollection.Create(containerName);
+
+        if (!container.AddVariable(ADDINCOMMAND))
+        {
+            throw new Exception("Error: variable could not be added to the container by " + containerName);
+        }
+
+        container.Changed += AddInCommand_Changed;
+
+        if (!container.Activate())
+        {
+            throw new Exception("Error: Container could not be activated by " + containerName);
+        }
+
+        return;
+    }
+
+    public void UnSubscribe()
+    {
+        container.Changed -= AddInCommand_Changed;
+        container.Deactivate();
+        ZenonProject.OnlineVariableContainerCollection.Delete(containerName);
+    }
+
+    private async void AddInCommand_Changed(object sender, ChangedEventArgs e)
+    {
+        if (e.Variable.Name == ADDINCOMMAND)
+        {
+            AddInOrderCode addInCommand =(AddInOrderCode)(UInt32)(double)e.Variable.GetValue(0);
+            UInt32 addinCommandErrorCode = 0;
+
+            if (addInCommand > 0)
+            {
+                ZenonProject.VariableCollection[ADDINCOMMANDERRORCODE].SetValue(0, addinCommandErrorCode);
+                e.Variable.SetValue(0, 0);
+            }
+        }
+        else
+        {
+            MessageBox.Show("Error: Variable name is not " + ADDINCOMMAND);
+            //throw new Exception("Error: Variable name is not " + ADDINCOMMAND);
+        }
+
+    }
+
+
+# 订阅多个变量变化事件
+
+       public void Subscribe(IProject context)
+        {
+            ZenonProject = context;
+
+            List<string> variablesList = new List<string>();
+            variablesList.Add(ADDINCOMMAND);
+            variablesList.Add(RECIPETUNINGADDINORDERCODE);
+
+            ZenonProject.OnlineVariableContainerCollection.Delete(containerName);
+            container = ZenonProject.OnlineVariableContainerCollection.Create(containerName);
+
+            if (!container.AddVariable(variablesList.ToArray()))
+            {
+                throw new Exception("Error: variables could not be added to the container by " + containerName);
+            }
+
+            container.BulkChanged += AddInCommand_Changed;
+
+            if (!container.ActivateBulkMode())
+            {
+                throw new Exception("Error: Bulk mode could not be activated of " + containerName);
+            }
+
+            if (!container.Activate())
+            {
+                throw new Exception("Error: Container could not be activated by " + containerName);
+            }
+
+            return;
+        }
+
+        public void UnSubscribe()
+        {
+            container.BulkChanged -= AddInCommand_Changed;
+            container.Deactivate();
+            ZenonProject.OnlineVariableContainerCollection.Delete(containerName);
+        }
+
+        private void AddInCommand_Changed(object sender, BulkChangedEventArgs e)
+        {          
+            foreach (var zenonVar in e.Variables)
+            {
+                if (zenonVar.Name == ADDINCOMMAND)
+                {
+                    Task.Run(() => {
+
+                        AddInOrderCode addInCommand = (AddInOrderCode)(UInt32)(double)zenonVar.GetValue(0);
+                        UInt32 addinCommandErrorCode = 0;
+
+                        if (addInCommand > 0)
+                        {
+    
+                            ZenonProject.VariableCollection[ADDINCOMMANDERRORCODE].SetValue(0, addinCommandErrorCode);
+                            zenonVar.SetValue(0, 0);
+                        }
+
+                    });
+                 }
+               
+                if (zenonVar.Name == RECIPETUNINGADDINORDERCODE)
+                {
+                    Task.Run(() => {
+                        AddInOrderCode addInCommand = (AddInOrderCode)(UInt32)(double)zenonVar.GetValue(0);
+                        UInt32 addinCommandErrorCode = 0;
+
+                        if (addInCommand > 0)
+                        {
+                            switch (addInCommand)
+                            {
+                                case AddInOrderCode.RecipeTuning:
+                                    addinCommandErrorCode = RecipeTuningService.TuningObject();
+                                    break;
+                                default:
+                                    break;
+                            }
+                            ZenonProject.VariableCollection[RECIPETUNINGADDINORDERERRORCODE].SetValue(0, addinCommandErrorCode);
+                            zenonVar.SetValue(0, 0);
+                        }
+                    });                   
+                }
+            }
+        }

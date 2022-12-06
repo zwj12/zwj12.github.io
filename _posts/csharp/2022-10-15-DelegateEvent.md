@@ -24,3 +24,6 @@ categories: CSharp
 
 	public delegate void EventHandler(object sender, EventArgs e);
 	public delegate void EventHandler<TEventArgs>(object sender, TEventArgs e);
+
+    public static event EventHandler<uint> OnFound;
+    public static event EventHandler<uint> OnLost;

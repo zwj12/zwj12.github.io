@@ -62,7 +62,7 @@ categories: WPF
     }
 
 ## 删除自动生成的dll
-在Build Events -> Post-build event command line中添加如下配置： 
+在Build Events -> Post-build event command line中添加如下配置，但是如果WPF控件中使用外部引用作为XAML的资源时，则通常不建议添加改指令，因为它会删除外面dll，导致引用失败。
 
 	cd $(TargetDir)
 	del *.dll

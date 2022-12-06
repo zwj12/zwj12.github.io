@@ -1,22 +1,22 @@
 ---
 layout: post
-title: "Microsoft.Toolkit.Mvvm"
+title: "CommunityToolkit.Mvvm"
 date: 2022-05-25 09:25:00 +0800
 author: Michael
 categories: CSharp
 ---
 
 # NuGet包
-	Microsoft.Toolkit.Mvvm
+	CommunityToolkit.Mvvm
 	Microsoft.Extensions.DependencyInjection
 
 # IOC
-Microsoft.Toolkit.Mvvm的NuGet包中，包含了一个IOC类：Microsoft.Toolkit.Mvvm.DependencyInjection.Ioc，该类实现了IServiceProvider接口
+CommunityToolkit.Mvvm的NuGet包中，包含了一个IOC类：Microsoft.Toolkit.Mvvm.DependencyInjection.Ioc，该类实现了IServiceProvider接口
 
 # IOC 依赖注入
 在App类中使用Microsoft.Toolkit.Mvvm.DependencyInjection.Ioc直接注册，也可以同时把注册的IServiceProvider类暴露出去。推荐直接使用IOC注册。没必要暴露App和Services。
 
-## 暴露App和Services，记得引用Microsoft.Extensions.DependencyInjection
+## 方案一：暴露App和Services，记得引用Microsoft.Extensions.DependencyInjection，不推荐使用。
     public partial class App : Application
     {
         public new static App Current => (App)Application.Current;
@@ -44,7 +44,7 @@ Microsoft.Toolkit.Mvvm的NuGet包中，包含了一个IOC类：Microsoft.Toolkit
         }
     }
 
-## 直接使用Microsoft.Toolkit.Mvvm.DependencyInjection.Ioc注册
+## 方案二：直接使用Microsoft.Toolkit.Mvvm.DependencyInjection.Ioc注册，可以使用，但推荐使用第三种。
     public partial class App : Application
     {
 
@@ -62,7 +62,7 @@ Microsoft.Toolkit.Mvvm的NuGet包中，包含了一个IOC类：Microsoft.Toolkit
 
     }
 
-## 使用类似MVVMLight的ViewModelLocator依赖注入
+## 方案三：使用类似MVVMLight的ViewModelLocator依赖注入，推荐使用
 MVVMLight使用了一个应用程序资源实例化了一个.Net类ViewModelLocator，然后通过该应用程序资源实例化类绑定到页面的DataContext中，这个方法的好处是可以在XAML中输入绑定字段时，会自动弹出绑定源的字段。
 
 	<Application x:Class="ERPApp.App" xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:local="clr-namespace:ERPApp" StartupUri="MainWindow.xaml" xmlns:d="http://schemas.microsoft.com/expression/blend/2008" d1p1:Ignorable="d" xmlns:d1p1="http://schemas.openxmlformats.org/markup-compatibility/2006">
@@ -97,8 +97,7 @@ MVVMLight使用了一个应用程序资源实例化了一个.Net类ViewModelLoca
 	                .AddSingleton<ERPModelContainer>()
 	                .BuildServiceProvider());
 	
-	        }
-	
+	        }	
 	
 	        public ProductsViewModel Products
 	        {
@@ -107,7 +106,8 @@ MVVMLight使用了一个应用程序资源实例化了一个.Net类ViewModelLoca
 	                return Ioc.Default.GetRequiredService<ProductsViewModel>();
 	            }
 	        }
-	
+			
+			//Remember use Ioc.Default.GetRequiredService
 	        public ProductViewModel Product
 	        {
 	            get
@@ -239,3 +239,17 @@ MVVMLight使用了一个应用程序资源实例化了一个.Net类ViewModelLoca
 只有手动注册时，才需要手动解除注册消息，当自动注册时，只需要通过设置IsActive为true或false，自动注册或解除消息。  
 
 	this.Unloaded += (sender, e) => WeakReferenceMessenger.Default.UnregisterAll(this);
+
+# 通知命令是否可以执行
+	//MVVMLight
+	this.UploadPMPPLineCommand.RaiseCanExecuteChanged();
+
+	//CommunityToolkit.Mvvm
+	this.UploadPMPPLineCommand.NotifyCanExecuteChanged();
+
+# 背景线程更新UI
+    Application.Current.Dispatcher.Invoke(() =>
+    {
+        this.WebSocketConnectCommand.NotifyCanExecuteChanged();
+        this.WebSocketCloseCommand.NotifyCanExecuteChanged();
+    });
