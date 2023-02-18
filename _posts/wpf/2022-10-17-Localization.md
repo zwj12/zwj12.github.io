@@ -165,7 +165,18 @@ categories: CSharp
 # 方案二：使用资源字典方案
 使用该方案，有一个致命缺点，就是在 XAML 中，引用 DynamicResource 的属性必须为依赖属性，否则会出错。智能感应支持XAML，但是不支持在代码中感应。
 
+## 对于类库项目，默认不支持直接右击添加资源字典功能，需要添加三行改项目配置中的属性。
+
+    <FileAlignment>512</FileAlignment>
+    <ProjectTypeGuids>{60dc8134-eba5-43b8-bcc9-bb4bc16c2548};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <WarningLevel>4</WarningLevel>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+    <Deterministic>true</Deterministic>
+
+![日志文件夹](/assets/wpf/AddResourceDictionary.png)  
+
 ## 在Resources文件夹中创建StringResources.xaml, StringResources.xx-xx.xaml文件。
+需要引入.Net的system命名空间，这样才能使用String的数据类型。资源字典默认编译为为Page，会被编译为BAML，无需其它任何操作。
 
 	//默认资源字典文件：Resources/StringResources.xaml
 	<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
@@ -223,6 +234,22 @@ categories: CSharp
     ResourceDictionary dictionary = new ResourceDictionary { Source = new Uri($@"Resources\StringResources.{culture}.xaml", UriKind.RelativeOrAbsolute) };
     Application.Current.Resources.MergedDictionaries.Add(dictionary);
 
+## 代码中使用资源
+
+	var message = TryFindResource("SwitchLanguage") as string;
+
+## 非WPF程序使用资源字典
+ResourceDictionary中使用的Uri协议pack和application是WPF专有的，如果需要在console中使用，需要初始化Application类，注册pack和application协议。否则会报错。
+
+    if (Application.Current == null)
+    {
+        new System.Windows.Application();
+    }
+
+    ResourceDictionary dictionary;
+    dictionary = new ResourceDictionary { Source = new Uri("/Michael.ClassLibrary1;component/Resources/StringResources.zh-CN.xaml", UriKind.RelativeOrAbsolute) };
+    //dictionary = new ResourceDictionary { Source = new Uri("pack://application:,,,/Michael.ClassLibrary1;component/Resources/StringResources.zh-CN.xaml", UriKind.RelativeOrAbsolute) };
+    Application.Current.Resources.MergedDictionaries.Add(dictionary);
 
 # CultureInfo, DateTimeFormatInfo, NumberFormatInfo 
 System.Globalization命名空间最重要的类是CultureInfo，表示文化，定义了日历、数字和日期的格式，以及和文化一起使用的排序字符串。CultureInfo, DateTimeFormatInfo, NumberFormatInfo均实现了IFormatProvider接口。

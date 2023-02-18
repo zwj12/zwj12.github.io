@@ -24,3 +24,19 @@ All dynamic screen elements that either allow a function execution or the Write 
 
 # 自动打开login窗口
 可以使用Reaction Matrix，关联[User Administration] Current authorization group 1变量，当等于0时，自动打开login窗口。
+
+# 设置多次输错密码后，自动锁定账号功能
+通过设置Project -> Properies -> User Administration可以设置用户密码输错后锁定账号和系统的功能，锁定后，需要管理员账号才能解锁，所以该限制对管理员账号没有效果：  
+
+1. Max. user error: 用户名输错最大次数后，系统锁定
+2. Max. password error: 密码输错最大次数后，该账号锁定。
+
+![日志文件夹](/assets/zenon/MaxUserPasswordError.png)  
+
+# AdministratorLevel和Interlocking配合使用禁用或隐藏没有权限的按钮
+通过Project -> Properies -> User Administration -> Login and sigature和Project -> Properies -> Graphical design -> Locked/Interlocked elements可以设置禁用按钮时的外观或是否隐藏等参数。
+
+![日志文件夹](/assets/zenon/LockedbuttonsInvisble.png)   
+![日志文件夹](/assets/zenon/AdministratorLevel_Interlocking.png)   
+
+

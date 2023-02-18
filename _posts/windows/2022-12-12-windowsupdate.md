@@ -16,4 +16,10 @@ categories: Windows
 单击开始菜单，输入gpedit，打开本地组策略编辑器。导航到“计算机配置”》“管理模板”》“Windows组件”》“Windows更新”》“适用于企业的Windows更新”。双击“选择目标功能更新版本”。将策略设置为“已启用”，在第一个框中键入Windows 10，在第二个框中键入21H1。选择确定，这会将目标版本设置为Windows 10版本21H1。
 
 ![日志文件夹](/assets/windows/SelectTheTargetFeatureUpdateVersion.png)  
-![日志文件夹](/assets/windows/WindowsUpdateForBusiness.png)  
+![日志文件夹](/assets/windows/WindowsUpdateForBusiness.png)
+
+# 可选更新
+可以通过可选更新安装和升级驱动程序。  
+
+![日志文件夹](/assets/windows/WindowsUpdate.png)    
+![日志文件夹](/assets/windows/OptionUpdate.png)  

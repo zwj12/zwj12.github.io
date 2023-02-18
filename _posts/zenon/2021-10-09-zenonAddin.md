@@ -348,3 +348,20 @@ Zenon的变量类型和C#的变量类型并不是一一对应的，对应关系�
                 }
             }
         }
+
+# 额外添加dll到ScadaAddin文件中
+1. Go to the reference you want to include and make sure, the "Copy Local" Property is set to true. Refer attached screenshot1. 
+2. Open the "AssemblyInfo.cs" of your Project and add the following line: [assembly: ImportAddinFile("YOUR_DLL_FILE.DLL")]
+3. What this line does, is to copy any file you add from the Applications Output Directory into the .scadaAddin File.
+You can also include other files like XML/Images/Whatever there and it will be part of your ScadaAddin. Refer attached screenshot2.
+
+		[assembly: ImportAddinFile("de-DE/PMTW.PMOP.Resources.resources.dll")]
+		[assembly: ImportAddinFile("es-ES/PMTW.PMOP.Resources.resources.dll")]
+		[assembly: ImportAddinFile("fr-FR/PMTW.PMOP.Resources.resources.dll")]
+		[assembly: ImportAddinFile("it-IT/PMTW.PMOP.Resources.resources.dll")]
+		[assembly: ImportAddinFile("ja-JP/PMTW.PMOP.Resources.resources.dll")]
+		[assembly: ImportAddinFile("ko-KR/PMTW.PMOP.Resources.resources.dll")]
+		[assembly: ImportAddinFile("zh-CN/PMTW.PMOP.Resources.resources.dll")]
+
+# Start
+如果在AddIn的Start接口中初始化变量，记住只能初始化zenon的变量，不能初始化SCADA Logic的变量，因为在Start函数运行时，可能SCADA Logic还没有启动，此时直接设置SCADA Logic的变量会失败。
