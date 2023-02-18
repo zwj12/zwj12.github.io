@@ -44,3 +44,32 @@ MergedDictionaries是ResourceDictionary对象的一个集合，可使用该集�
 3. 对于“页”或“资源”生成操作(**Build Action=page**)，可以将指定程序集名称的 Source 属性指定为详细形式，并使用 component; 关键字引用程序集中的资源。例如，如果已编译的应用程序 DLL 命名为 MyApplication，并且要合并的资源 XAML 命名为 MergedDictionary.xaml，则为 Source 指定的正确值为：/MyApplication;component/MergedDictionary.xaml
 
 		<ResourceDictionary Source="/PickMasterUtility;component/Resources/StringResources.xaml"/>
+
+# 资源数据类型
+在设置控件属性为资源时，资源的数据类型一定要和控件属性正确匹配，例如如果字体的数据类型为FontFamily，那么就一定要用FontFamily设置资源，不能使用String类型设置资源。XAML解析器只会在元素解析时使用转换器，即在设置WPF元素属性时可以使用字符串（此时XAML解析器会使用默认Converter转换器解析），但是如果使用资源绑定时，此时不会调用转换器，如果数据类型不一致，会直接抛出异常。
+
+	<Window x:Class="WpfApp1.MainWindow"
+	        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+	        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+	        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+	        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+	        xmlns:local="clr-namespace:WpfApp1"
+	        xmlns:sys="clr-namespace:System;assembly=mscorlib"
+	        mc:Ignorable="d"
+	        Title="MainWindow" Height="450" Width="800">
+	
+	    <Window.Resources>
+	        <FontFamily x:Key="ButtonFontFamily">Times New Roman</FontFamily>
+	        <sys:Double x:Key="ButtonFontSize">18</sys:Double>
+	        <FontWeight x:Key="ButonFontWeight">Bold</FontWeight>
+	        <sys:String x:Key="ButtonFontFamilyString">Times New Roman</sys:String>
+	    </Window.Resources>
+	    <Grid>
+	        <Button Name="cmd"
+	                FontFamily="{StaticResource ButtonFontFamily}"
+	                FontWeight="{StaticResource ButonFontWeight}"
+	                FontSize="{StaticResource ButtonFontSize}">
+	            Button
+	        </Button>
+	    </Grid>
+	</Window>
