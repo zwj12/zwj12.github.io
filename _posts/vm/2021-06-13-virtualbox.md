@@ -12,7 +12,7 @@ categories: VM
 	sudo rm -f zero.fill
 	"C:\Program Files\Oracle\VirtualBox\VBoxManage.exe" modifyhd Ubuntu.vdi --compact
 
-	//For Windows
+	//For Windows, sdelete64命令需要在子系统中运行
 	sdelete64 -z c:\
 	VBoxManage.exe modifyhd "D:\105 Virtual machine\Win7VisualStudio2008\Win7VisualStudio2008.vdi" --compact
 
