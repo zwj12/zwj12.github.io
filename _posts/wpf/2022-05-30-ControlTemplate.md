@@ -114,3 +114,27 @@ The ControlTemplate specifies the appearance of a Control; if a Control does not
             </ControlTemplate>
         </Button.Template>
     </Button>
+
+# ContentPresenter
+ContentPresenter用来在一个ContentControl的ContentTemplate属性中来指定内容添加的位置。 每个ContentControl类型的默认控件模板中都会有一个ContentPresenter（来呈现ContentControl的内容）。
+
+当一个ContentPresenter对象位于ContentControl的ControlTemplate中时，该对象的Content，ContentTemplate以及ContentTemplateSelector属性会从ContentControl中的相同名称的属性中取得值。ContentControl和ContentPresenter中都有一个ContentTemplate属性，意思就是ContentPresenter的ContentTemplate会使用ContentControl的ContentTemplate数据。
+
+![日志文件夹](/assets/wpf/ContentPresenter.png)   
+
+## ContentSource
+可以通过设置ContentSource属性或者绑定的方式来让ContentPresenter属性从其他的模板化父亲（Templated Parent）的属性中获取值。
+
+## ContentPresenter使用以下的逻辑来显示Content内容
+- 如果已经设置了ContentPresenter中的ContentTemplate属性，ContentPresenter会将这个DataTemplate（指的就是ContentTemplate）应用到Content属性上并且显示作为结果的UIElement和它的子元素（将DataTemplate内的控件树显示）。
+- 若设置了ContentTemplateSelector，ContentPresenter就会将合适的DataTemplate应用到Content上并显示作为结果的UIElement和它的子元素。
+- 若有DataTemplate关联到Content，ContentPresenter会将DataTemplate应用到Content上并且显示UIElement和子元素。。
+- 若Content是UIElement对象，UIElement就会被呈现。若UIElement已经有一个父亲，会产生一个异常。
+- 若有一个用于将Content转化为UIElement的TypeConverter，ContentPresenter就会用这个TypeConverter并呈现UIElement。
+- 若有一个用于将Content转化为string的TypeConverter，ContentPresenter就会用这个TypeConverter并创建一个TextBlock来容纳那段string，接着TextBlock会被显示。
+- 若内容是XmlElement，InnerText属性的值会显示在TextBlock中
+- ContentPresenter在Content上调用ToString方法并创建一个TextBlock来容纳这个ToString返回的string。接着TextBlock被显示。
+
+[https://learn.microsoft.com/en-gb/dotnet/api/system.windows.controls.contentpresenter](https://learn.microsoft.com/en-gb/dotnet/api/system.windows.controls.contentpresenter "ContentPresenter Class")
+
+
