@@ -48,3 +48,22 @@ categories: CPP
 
 ![日志文件夹](/assets/cpp/ProjectManager.png)  
 ![日志文件夹](/assets/cpp/CustomizedProjectMacros.png)  
+
+# C++的入口函数
+我们最开始学习c++时，就知道要写一个main()函数，并且知道这是整个函数的入口，但是c++不只有main()函数这一个入口。对于不同的程序函数入口是不同的。并且，在整个可执行文件执行之前，有一些程序在main()函数之前被执行。  
+1. main()是WINDOWS的控制台程序（32BIT）入口或DOS程序（16BIT）入口。
+2. WinMain()是WINDOWS的GUI程序入口。
+3. wmain()是UNICODE版本的main()。
+4. _tmain()是个宏,如果是UNICODE则他是wmain()否则他是main()。
+
+## C++程序启动过程
+C++程序的启动运行，需要C++运行时环境。C++运行时为C++程序提供必要的运行环境，是先于“main函数”运行的，C++程序第一个被执行的函数会因为C++运行时不同而不同。例如，在Windows操作系统下，C++运行时的启动函数WinMainCRTStartup或mainCRTStartup是第一个被执行的函数。在C++运行时初始化工作完成后，才会调用类似“main”的函数。基于此，一个类似入口点的C++入口函数定义：C++运行时为C++程序提供必要的运行环境；在C++运行时初始化工作完成后，第一个调用的函数是入口函数。其中w开头的函数时unicode版本的。  
+
+1. mainCRTStartup（或 wmainCRTStartup）, 使用 /SUBSYSTEM:CONSOLE 的应用程序
+2. WinMainCRTStartup（或 wWinMainCRTStartup）, 使用 /SUBSYSTEM:WINDOWS 的应用程序
+3. _DllMainCRTStartup, 调用 DllMain（如果存在），DllMain 必须用 __stdcall 来定义
+
+![日志文件夹](/assets/cpp/CRT.png)  
+
+# Windows platforms (CRT)
+The C run-time libraries for Visual Studio support all versions of Windows and Windows Server that are still in extended support. Libraries are available for x86, x64, and ARM64. All of these operating systems support the Windows desktop API (Win32) and provide Unicode support. In addition, any Win32 application can use a multibyte character set (MBCS).
