@@ -38,3 +38,7 @@ Visual Studio通过Configuration Manager管理Build程序时的配置，在Confi
 2. 在 32 位 Windows 操作系统上：
 	- 用 x86或anycpu 编译的程序集将在 32 位 CLR 上执行。
 	- 用 x64 编译的程序集无法运行。
+
+# 多线程断点调试
+通过断点的条件筛选器可以限制断点在某一个线程中启用。  
+ ![日志文件夹](/assets/develop/DebugByThreadID.png)  
