@@ -7,7 +7,7 @@ categories: CVL
 ---
 
 # 环境变量 VISION_ROOT
-安装CVL库后，会在环境变量中创建一个新的变量VISION_ROOT，该变量存储着CVL库的位置。  
+安装CVL库后，会在环境变量中创建一个新的变量VISION_ROOT，该变量存储着CVL库的位置.  
 ![日志文件夹](/assets/CVL/vision_root.png)  
 
 # CVL库头文件
