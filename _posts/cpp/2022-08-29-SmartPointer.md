@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "smart pointer"
-date: 2023-01-23 10:12:00 +0800
+date: 2022-08-29 10:12:00 +0800
 author: Michael
 categories: CPP
 ---

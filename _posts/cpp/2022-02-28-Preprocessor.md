@@ -14,7 +14,7 @@ categories: CPP
 # pragma once
 pragma once可以放置在头文件中任何位置，但是通常推荐放置在开头位置。
 
-#pragma comment(lib,“Ws2_32.lib”)
+# pragma comment(lib,“Ws2_32.lib”)
 表示链接Ws2_32.lib这个库。
 
 	#pragma comment(lib,"rpcrt4.lib")

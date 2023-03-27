@@ -365,3 +365,6 @@ You can also include other files like XML/Images/Whatever there and it will be p
 
 # Start
 如果在AddIn的Start接口中初始化变量，记住只能初始化zenon的变量，不能初始化SCADA Logic的变量，因为在Start函数运行时，可能SCADA Logic还没有启动，此时直接设置SCADA Logic的变量会失败。
+
+# Scada.AddIn.Contracts.Screen.IScreen.Close
+对于有WPF控件的Screen，不建议直接在AddIn代码中使用IScreen.Close()函数关闭，使用该函数会导致WPF控件关联的变量没有正确处理。推荐使用IFunction.Execute()调用zenon函数关闭Screen。
