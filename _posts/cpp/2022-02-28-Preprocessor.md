@@ -96,3 +96,27 @@ pragma once可以放置在头文件中任何位置，但是通常推荐放置在
 可以通过设置C/C++ -> Preprocessor -> Preprocess to a File -> Yes，使Visual Studio编译时把宏展开后的代码保存到与.cpp同名的.i文件中。  
 
 ![日志文件夹](/assets/cpp/PreprocesstoaFile.png)  
+
+# WIN32宏
+在 Win32 配置下，WIN32 在“项目属性-C/C++-预处理器-预处理器定义”里声明了，而在 x64 配置下，这个常量并不在项目预定义列表中。这是否说明可以根据 WIN32 来判断是否在 x64 平台呢？不。在 Windows SDK 的 minwindef.h 下第 37 行有如下定义：
+
+	#ifndef WIN32
+	
+	#define WIN32
+	
+	#endif
+
+即是说，只要包含了 Windows.h，那么 WIN32 常量是肯定定义了的，所以不能用于判断平台环境。但是如果在预处理定义里删掉 WIN32，又不包含 Windows.h，那么 WIN32 未定义
+
+# _WIN32，_WIN64
+_WIN32 和 _WIN64，这两个比较特别，没有任何显式定义。在 Windows.h 里没有，在“项目属性-C/C++-预处理器-预处理器定义”下也没有。根据 MSDN，这是由编译器（ml.exe/ml64.exe）内部定义的。具体描述是 
+
+	_WIN32：Defined for applications for Win32 and Win64. Always defined.
+	_WIN64：Defined for applications for Win64.
+
+WIN32宏   --只要包含了 Windows.h，那么 WIN32 常量是肯定定义了的，所以不能用于判断平台环境
+
+	_WIN32     --32位和64位程序都有，且总是定义的.
+	_WIN64    --只有64位程序才有
+
+WIN32/_WIN32 可以用来判断是否 Windows 系统（对于跨平台程序），而 _WIN64 用来判断编译环境是 x86 还是 x64
