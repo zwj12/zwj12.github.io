@@ -23,3 +23,8 @@ categories: Windows
 
 ![日志文件夹](/assets/windows/WindowsUpdate.png)    
 ![日志文件夹](/assets/windows/OptionUpdate.png)  
+
+# 禁止开机提示注册微软账户登录
+取消 Use my sign-in info to automatically finish setting up my device after an update or restart.  
+
+![日志文件夹](/assets/windows/AutomaticallySettingSignIn.png)  

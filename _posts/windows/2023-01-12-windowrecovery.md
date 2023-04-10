@@ -14,5 +14,3 @@ categories: Windows
 	attrib -h -s c:\Windows\System32\Recovery\Winre.wim
 	reagentc /enable
 	reagentc /info
-
-![日志文件夹](/assets/windows/OptionUpdate.png)  
