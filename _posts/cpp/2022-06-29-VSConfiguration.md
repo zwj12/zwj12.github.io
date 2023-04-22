@@ -67,3 +67,10 @@ C++程序的启动运行，需要C++运行时环境。C++运行时为C++程序�
 
 # Windows platforms (CRT)
 The C run-time libraries for Visual Studio support all versions of Windows and Windows Server that are still in extended support. Libraries are available for x86, x64, and ARM64. All of these operating systems support the Windows desktop API (Win32) and provide Unicode support. In addition, any Win32 application can use a multibyte character set (MBCS).
+
+# MSVCv141
+如果需要Visual Studio 2022支持Visual Studio 2017编译器编译，需要添加MSVC v141 - 2017 C++ 和 C++ MFC for v141 build tools两个选项。
+
+![日志文件夹](/assets/cpp/PlatformToolset.png)  
+![日志文件夹](/assets/cpp/MSVCv141.png)  
+![日志文件夹](/assets/cpp/MFCBuildTools.png)  
