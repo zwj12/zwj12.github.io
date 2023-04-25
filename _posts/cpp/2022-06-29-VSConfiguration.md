@@ -74,3 +74,8 @@ The C run-time libraries for Visual Studio support all versions of Windows and W
 ![日志文件夹](/assets/cpp/PlatformToolset.png)  
 ![日志文件夹](/assets/cpp/MSVCv141.png)  
 ![日志文件夹](/assets/cpp/MFCBuildTools.png)  
+
+# Target Machine
+通过修改Configuration Properties -> Linker -> Advanced -> Target Machine = MachineX64，可以把程序编译为64位版本。
+
+![日志文件夹](/assets/cpp/TargetMachine.png)  
