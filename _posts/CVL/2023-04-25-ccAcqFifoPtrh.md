@@ -6,6 +6,27 @@ author: Michael
 categories: CVL
 ---
 
+# ccAcqFifo
+- You configure the FIFO for the camera and format you are using.
+- acquire images by calling its start() method.
+- call the FIFO completeAcq() method to initiate processing the acquired image.
+- start() and completeAcq() should always be issued in pairs, one pair for each acquired image.
+- Only one FIFO is required to process a stream of acquisitions from the same camera. For a multiple camera application you will generally create one FIFO for each camera. 
+
+![日志文件夹](/assets/CVL/CVLAcquisitionSubsystem.png)  
+
+# engine queue & user queue
+Each FIFO contains two internal queues, the engine queue and the user queue. 
+
+1. The engine queue contains acquisition requests for which images **have not been acquired**. 
+2. The user queue contains acquisition requests for which image acquisition is completed, but the completeAcq() method **has not been called**. 
+
+# triggerEnable
+he FIFO provides a triggerEnable property that enables or disables 
+the engine thread. When triggerEnable is set to false, the engine 
+thread immediately aborts any acquisition in progress and 
+terminates.
+
 # ccAcqFifo::properties()
 设置相机参数
 

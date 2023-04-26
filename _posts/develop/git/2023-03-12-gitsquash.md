@@ -25,6 +25,7 @@ categories: Develop
     git rebase -i HEAD~4
 
 # git merge --squash feature
+feature分支合并到master分支
 
 	git checkout master
 	git merge --squash feature
