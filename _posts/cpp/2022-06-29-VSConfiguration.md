@@ -79,3 +79,8 @@ The C run-time libraries for Visual Studio support all versions of Windows and W
 通过修改Configuration Properties -> Linker -> Advanced -> Target Machine = MachineX64，可以把程序编译为64位版本。
 
 ![日志文件夹](/assets/cpp/TargetMachine.png)  
+
+# Property Manager Macro
+可以在*.props中创建宏变量，然后在配置中引用该变量定义的值。该宏变量可能不能直接用Visual Studio查看，只能手动打开配置文件查看或修改。
+
+![日志文件夹](/assets/cpp/PropertyGroupMacro.png)  
