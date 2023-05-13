@@ -30,6 +30,8 @@ Visual Studio C++ -> Properties -> Linker -> General -> Additional Library Direc
 # DLL
 Visual Studio C++ -> Properties -> C/C++ -> Preprocessor -> Preprocessor Definitions -> CVL7Library_EXPORTS, cmBuildingDLLs  
 
+## stdafx.h
+
     #ifdef CVL7Library_EXPORTS
     #define DLLAPI __declspec(dllexport)
     #else
@@ -54,6 +56,11 @@ Visual Studio C++ -> Properties -> C/C++ -> Preprocessor -> Preprocessor Definit
     #endif
     #endif
 
+## 主程序stdafx.h
+
+    #include "../CVL7Library/stdafx.h"
+
+## 主程序需要初始化
     //初始化CVL库
     BOOL CWinApp::InitInstance()
     {
