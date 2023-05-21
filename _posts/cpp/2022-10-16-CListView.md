@@ -6,6 +6,9 @@ author: Michael
 categories: CPP
 ---
 
+# CListView
+CListView 是 CView 是一个导出类，仅仅是一个视图的管理器，不具备CListCtrl中的方法。但在类中嵌套了一个CListCtrl对象，因此当我们要对列表对象进行访问的话，就必须通过  GetListCtrl()来取得CListCtrl对象。
+
 # 设置报表样式
 
     BOOL CMFCApplication1View::PreCreateWindow(CREATESTRUCT& cs)
