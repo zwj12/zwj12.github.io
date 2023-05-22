@@ -6,8 +6,6 @@ author: Michael
 categories: CVL
 ---
 
-# pel = picture element
-An image is a two-dimensional array of values. Each element in the root image array is called a pixel or a pel (short for picture element). The value stored in each pixel of the image indicates the light intensity or brightness of each pixel. Typically, pixel values are integers, though other values may be used as well.
 
 # Display Image Client Coords
 通过cc2Xform可以把图像坐标系和用户坐标系进行变换，使其不重合。
