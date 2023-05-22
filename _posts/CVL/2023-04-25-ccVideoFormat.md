@@ -23,6 +23,11 @@ categories: CVL
 		CString y=x[i]->name();
 	}
 
+## 获取当前相机支持的图像格式
+	this->videoFormatList=ccStdVideoFormat::filterList(ccStdVideoFormat::fullList(), fg);
+	for (size_t i = 0; i < this->videoFormatList.size(); ++i)
+		OutputDebugString(this->videoFormatList[i]->name());
+
 # ccVideoFormat::fullList()
 获取CVL库支持的图像格式
 
@@ -64,6 +69,11 @@ GigE相机支持的格式如下，在使用是，需要使用全称：Generic Gi
 
 	fifo = 0;
 	fg.disconnect(false);
+
+
+	this->videoFormatList=ccStdVideoFormat::filterList(ccStdVideoFormat::fullList(), fg);
+	for (size_t i = 0; i < this->videoFormatList.size(); ++i)
+		OutputDebugString(this->videoFormatList[i]->name());
 
 # ccStdVideoFormat::newAcqFifoEx()
 通过图像格式绑定相机，就可以获取图像了。Once you have obtained a video format, use its newAcqFifoEx() member function and the reference to the frame grabber to create an acquisition FIFO:
