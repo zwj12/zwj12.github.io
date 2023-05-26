@@ -43,6 +43,12 @@ categories: CPP
 		}
 	}
 
+# OnTvnSelchanged
+选中项改变事件。
+
+	HTREEITEM item= m_treeCtrl->GetSelectedItem();
+	CString str = m_treeCtrl->GetItemText(item);
+
 # MainFrm代码
 
 	#define NM_ROBOTCONTROLLER (WM_USER+100)

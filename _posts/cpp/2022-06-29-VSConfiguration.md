@@ -84,3 +84,8 @@ The C run-time libraries for Visual Studio support all versions of Windows and W
 可以在*.props中创建宏变量，然后在配置中引用该变量定义的值。该宏变量可能不能直接用Visual Studio查看，只能手动打开配置文件查看或修改。
 
 ![日志文件夹](/assets/cpp/PropertyGroupMacro.png)  
+
+# 重写函数
+通过类视图的属性，可以查看Overrides选项卡，选择需要重写的函数，新建，就可以在子类中直接添加重写函数。
+
+![日志文件夹](/assets/cpp/Overrides.png)  
