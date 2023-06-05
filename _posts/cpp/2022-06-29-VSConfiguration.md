@@ -89,3 +89,20 @@ The C run-time libraries for Visual Studio support all versions of Windows and W
 通过类视图的属性，可以查看Overrides选项卡，选择需要重写的函数，新建，就可以在子类中直接添加重写函数。
 
 ![日志文件夹](/assets/cpp/Overrides.png)  
+
+# MFC源代码位置
+通过Solution Property -> Common Properties -> Debug Source Files可以查看MFC源代码的位置，貌似这个参数存储在\.vs\MFCCVL7\v17\.suo文件中。不清楚正确的修改方式是什么？该位置会影响把MFC设置为静态库时单步调试代码到MFC源代码时的功能。
+
+![日志文件夹](/assets/cpp/DebugSourceFiles.png)  
+
+# “Include Directories" 和 "Additional Include Directories"
+在Visual Studio中有两个地方可以设置第三方库的头文件夹，分别是Project Property -> VC++ Directories -> Include Directories 和 Project Property -> C/C++ -> General -> Additional Include Directories.
+
+The compiler searches for directories in the following order:
+1. Directories containing the source file.
+2. Directories specified with the /I option, in the order that CL encounters them. (C/C++ -> General -> Additional Include Directories)
+3. Directories specified in the INCLUDE environment variable. (VC++ Directories -> Include Directories)
+
+![日志文件夹](/assets/cpp/VCIncludeDirectories.png)  
+![日志文件夹](/assets/cpp/AdditionalIncludeDirectories.png)  
+

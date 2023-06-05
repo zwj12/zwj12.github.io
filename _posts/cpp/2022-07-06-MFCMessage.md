@@ -68,9 +68,27 @@ categories: CPP
 	}
 
 # 消息的分类
-1. 标准Windows消息，ON_WM_XXX
-2. 自定义消息，ON_MESSAGE
-3. 命令消息，ON_COMMAND
+1. 标准Windows窗口消息，除WM_COMMAND之外，所有以WM_开头的消息。ON_WM_XXX，由系统产生。从CWnd派生的类，都可以接收到这类消息。 
+2. 命令消息，WM_COMMAND，由菜单和工具栏或快捷键产生，以WM_COMMAND形式发出。从CCmdTarget派生的类，都可以接收到这类消息。
+3. 控件通知消息，有多种格式
+
+# 消息类型：
+1. 系统消息，[0x0000, 0x03ff]，（0 到 WM_USER–1），系统消息有可以分成三类: 窗口消息(WM_), 命令消息(WM_COMMAND), 控件通知消息(WM_NOTIFY)
+2. 窗口类内部自定义消息， 0x0400-0x7FFF（WM_USER 到 WM_APP-1）
+3. 应用程序内部自定义消息，0x8000-0xBFFF（WM_APP 到 0xBFFF）
+4. 应用程序之间自定义消息，0xC000-0xFFFF（0xC000 到 0xFFFF）
+
+- ON_COMMAND 是响应菜单栏，状态栏，工具栏发送给框架窗口的命令消息的宏。命令类型是：CN_COMMAND
+- ON_UPDATE_COMMAND_UI 是响应程序空闲时促发的界面更新消息的宏。
+- ON_CONTROL 是父窗口响应控件发送的通知消息的宏。
+- ON_CONTROL_REFLECT 是子控件响应父窗口反射回来的通知消息的的宏。
+- ON_NOTIFY 是父窗口响应复杂控件发送的通知消息的宏
+- ON_NOTIFY_REFLECT 是复杂子控件响应父窗口反射回来的通知消息的的宏。
+- ON_MESSAGE 是窗口响应自定义的消息的宏
+- ON_THREAD_MESSAGE是线程响应自定义的消息的宏
+- ON_REGISTERED_MESSAGE 是响应通过RegisterWindowMessage注册得到的消息宏。
+
+![日志文件夹](/assets/cpp/MFCMessageType.png)  
 
 # 消息宏
 1. 通用宏：ON_MESSAGE，可以定义所有消息，但是尽量使用标准宏和命令宏

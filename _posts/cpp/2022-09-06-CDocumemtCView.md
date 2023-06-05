@@ -6,6 +6,26 @@ author: Michael
 categories: CPP
 ---
 
+# CCreateContext 
+当创建视图时，MFC使用CCreateContext结构体把视图，文档进行关联。The framework uses the CCreateContext structure when it creates the frame windows and views that are associated with a document. A CCreateContext structure contains pointers to the document, the frame window, the view, and the document template. A view should not be created for a nonexistent document. All of the pointers in CCreateContext are optional and can be NULL if unspecified or unknown.
+
+## Member
+- m_pNewViewClass：CRuntimeClass*
+- m_pCurrentDoc：CDocument*
+- m_pNewDocTemplate: CDocTemplate*
+- m_pLastView: CView*
+- m_pCurrentFrame: CFrameWnd*
+
+## Related Function
+CDocTemplate::CreateNewFrame() -> CFrameWnd::LoadFrame() -> CFrameWnd::Create() -> CMainFrame::OnCreate() -> CMainFrame::OnCreateClient() -> CFrameWnd::CreateView() -> pContext->m_pNewViewClass->CreateObject() -> CWnd::Create()
+
+- CFrameWnd::Create()
+- CFrameWnd::LoadFrame()
+- CFrameWnd::OnCreateClient()
+- CSplitterWnd::Create()
+- CSplitterWnd::CreateView()
+- CWnd::Create()
+
 # 拆分窗口
 在OnCreateClient函数中，可以使用CSplitterWnd::CreateStatic()可以设置窗口为几行几列。
 

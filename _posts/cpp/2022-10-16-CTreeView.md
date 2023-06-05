@@ -89,3 +89,64 @@ categories: CPP
 		}
 		return LRESULT();
 	}
+
+# CTreeCtrl::InsertItem
+Call this function to insert a new item in a tree view control.
+
+	HTREEITEM InsertItem(LPTVINSERTSTRUCT lpInsertStruct);
+
+	HTREEITEM InsertItem(
+		UINT nMask,
+		LPCTSTR lpszItem,
+		int nImage,
+		int nSelectedImage,
+		UINT nState,
+		UINT nStateMask,
+		LPARAM lParam,
+		HTREEITEM hParent,
+		HTREEITEM hInsertAfter);
+
+	//只有文字
+	HTREEITEM InsertItem(
+		LPCTSTR lpszItem,
+		HTREEITEM hParent = TVI_ROOT,
+		HTREEITEM hInsertAfter = TVI_LAST);
+
+	//包含文字和图标
+	HTREEITEM InsertItem(
+		LPCTSTR lpszItem,
+		int nImage,
+		int nSelectedImage,
+		HTREEITEM hParent = TVI_ROOT,
+		HTREEITEM hInsertAfter = TVI_LAST);
+
+# CTreeCtrl::Select
+Call this function to select the given tree view item, scroll the item into view, or redraw the item in the style used to indicate the target of a drag-and-drop operation.
+
+	m_tree.SelectItem(hNewItem);
+	m_tree.EnsureVisible(hNewItem);
+
+# CTreeCtrl::DeleteItem
+删除节点
+
+# CTreeCtrl::SetItemText
+设置节点字符串
+
+# CTreeCtrl::GetSelectedItem
+获取选中的节点
+
+# CTreeCtrl::ExpandAllNode
+展开所有节点
+
+	ExpandAllNode(m_tree.GetRootItem(), m_tree);
+
+	void CUserManual::ExpandAllNode(HTREEITEM hItem, CTreeCtrl& treeShow)
+	{
+		HTREEITEM hChild = treeShow.GetChildItem(hItem);
+		while(hChild)
+		{
+			treeShow.Expand(hItem, TVE_EXPAND);
+			ExpandAllNode(hChild, treeShow);
+			hChild = treeShow.GetNextSiblingItem(hChild);
+		}
+	}

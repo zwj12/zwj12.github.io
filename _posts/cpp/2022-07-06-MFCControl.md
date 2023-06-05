@@ -12,3 +12,11 @@ categories: CPP
 # 启用禁用控件
 	m_buttonPre.EnableWindow(TRUE);
 	m_buttonNext.EnableWindow(FALSE);
+
+# 控件数据交换
+
+	void CCamera::DoDataExchange(CDataExchange* pDX)
+	{
+		CFormView::DoDataExchange(pDX);
+		DDX_Text(pDX, IDC_EDIT_CAMERACOUNT, cameraCount);
+	}
