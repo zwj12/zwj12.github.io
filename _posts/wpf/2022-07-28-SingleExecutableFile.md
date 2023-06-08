@@ -66,3 +66,28 @@ categories: WPF
 
 	cd $(TargetDir)
 	del *.dll
+
+# 单实例应用程序 Single Instance Application
+
+    public partial class App : Application
+    {
+        private EventWaitHandle programStarted { get; set; }
+
+        protected override void OnStartup(StartupEventArgs e)
+        {
+            CheckSingleInstanceApplication();            
+
+            base.OnStartup(e);
+        }
+
+        private void CheckSingleInstanceApplication()
+        {
+            programStarted = new EventWaitHandle(false, EventResetMode.AutoReset, "PMOP.WPF.Startup", out bool createNew);
+            if (!createNew)
+            {
+                MessageBox.Show("PMOP is already started.");
+                App.Current.Shutdown();
+                Environment.Exit(0);
+            }
+        }
+    }

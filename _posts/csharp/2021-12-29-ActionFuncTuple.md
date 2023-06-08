@@ -6,10 +6,12 @@ author: Michael
 categories: CSharp
 ---
 
-# Action & Func
+# Action & Func & Predicate
 1. Action用于没有返回值的方法（参数可以根据自己情况进行传递）
-1. Func恰恰相反用于有返回值的方法（同样参数根据自己情况情况）
-1. 记住无返回就用action，有返回就用Func
+2. Func恰恰相反用于有返回值的方法（同样参数根据自己情况情况）
+3. 记住无返回就用action，有返回就用Func
+4. Predicate是返回bool型的泛型委托，Predicate<int>表示传入参数为int，返回bool的委托，
+Predicate有且只有一个参数，返回值固定为bool
 
 # 元组 
 开发人员在元组和匿名类型之间进行选择时，需要考虑几个因素。 一般来说，如果不使用表达式树，并且你熟悉元组语法，请选择 ValueTuple，因为它们提供可灵活命名属性的值类型。 如果使用表达式树并且想要命名属性，请选择匿名类型。 否则，请使用 Tuple。

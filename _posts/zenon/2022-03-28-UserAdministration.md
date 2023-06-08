@@ -22,6 +22,9 @@ All dynamic screen elements that either allow a function execution or the Write 
 
 当有用户登陆时，[User Administration] Current authorization group 1至少大于0，这是创建用户时强制设置level时定义的。
 
+![日志文件夹](/assets/zenon/UserAdministrationVariables.png) 
+![日志文件夹](/assets/zenon/AuthorizationLevel.png) 
+
 # 自动打开login窗口
 可以使用Reaction Matrix，关联[User Administration] Current authorization group 1变量，当等于0时，自动打开login窗口。
 
