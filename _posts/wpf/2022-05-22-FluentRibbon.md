@@ -6,6 +6,9 @@ author: Michael
 categories: WPF
 ---
 
+# NuGet包
+	Fluent.Ribbon
+
 # 添加资源
 	<Application.Resources>
 	    <!-- Attach default Theme -->

@@ -65,7 +65,14 @@ CommunityToolkit.Mvvm的NuGet包中，包含了一个IOC类：Microsoft.Toolkit.
 ## 方案三：使用类似MVVMLight的ViewModelLocator依赖注入，推荐使用
 MVVMLight使用了一个应用程序资源实例化了一个.Net类ViewModelLocator，然后通过该应用程序资源实例化类绑定到页面的DataContext中，这个方法的好处是可以在XAML中输入绑定字段时，会自动弹出绑定源的字段。
 
-	<Application x:Class="ERPApp.App" xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:local="clr-namespace:ERPApp" StartupUri="MainWindow.xaml" xmlns:d="http://schemas.microsoft.com/expression/blend/2008" d1p1:Ignorable="d" xmlns:d1p1="http://schemas.openxmlformats.org/markup-compatibility/2006">
+	<Application x:Class="ERPApp.App" 
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" 
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" 
+        xmlns:local="clr-namespace:ERPApp" 
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"        
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        mc:Ignorable="d"
+        StartupUri="MainWindow.xaml" >
 	    <Application.Resources>
 	        <ResourceDictionary>
 	            <ResourceDictionary.MergedDictionaries>
