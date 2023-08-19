@@ -14,3 +14,8 @@ categories: Windows
 	attrib -h -s c:\Windows\System32\Recovery\Winre.wim
 	reagentc /enable
 	reagentc /info
+
+## Method 2
+从win10 iso的光盘镜像中，复制/sources/install.wim/windows/system32/recovery/winRE.wim到c:\Windows\System32\Recovery\Winre.wim, 运行reagentc /enable
+
+![日志文件夹](/assets/windows/winre.wim.iso.png)

@@ -29,4 +29,8 @@ feature分支合并到master分支
 
 	git checkout master
 	git merge --squash feature
-	git commit -m "Merge feature" ​​​
+	git commit -m "Merge feature" 
+
+	//?
+	git checkout feature
+	git merge master​​​

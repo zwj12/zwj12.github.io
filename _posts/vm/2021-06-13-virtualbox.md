@@ -17,7 +17,7 @@ categories: VM
 	VBoxManage.exe modifyhd "H:\VirtualOS\Win10Test\Win10Test.vdi" --compact
 
 # 修改UUID
-	C:\Program Files\Oracle\VirtualBox>VBoxManage internalcommands sethduuid "D:\105 Virtual machine\Win7EPLAN\Win7EPLAN.vdi"
+	C:\Program Files\Oracle\VirtualBox>VBoxManage internalcommands sethduuid "D:\105 Virtual machine\Win10StandardOri\Win10StandardOri.vdi"
 	UUID changed to: 43932de1-3135-4145-a056-9207d3fadb5f
 
 # 启用嵌套VT-x/AMD-V复选框灰色

@@ -11,6 +11,13 @@ categories: PickMaster
 ![日志文件夹](/assets/zenon/AddInFrameworkBuildTargetsError.png)   
 ![日志文件夹](/assets/zenon/RegisterSCADAsoftware.png)   
 
+# Reference path
+    <Reference Include="Mono.Addins, Version=1.0.0.0, Culture=neutral, PublicKeyToken=0738eb9f132ed756, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+    </Reference>
+    <Reference Include="Scada.AddIn.Contracts">
+    </Reference>
+
 # 修改Addin名称
 导入Addin到zenon工程后，如果想在编译程序时就把name设置好，可以修改文件AddInProjectService1\AddInProjectService1\Properties\AddInInfo.cs中的设置，通过修改dll名称或者其他地方的配置均不会修改zenon中name的属性。Visual Studio编译后，会按项目的Assembly Name创建scadaAddIn文件，但是导入zenon后，在zenon编译后，会再按AddInInfo.cs文件中设置的assembly: Addin名称创建scadaAddIn文件，如果两边设置不一样，会导致创建的scadaAddIn文件名称不一致，但不影响使用。  
 
