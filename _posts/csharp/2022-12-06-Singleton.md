@@ -82,7 +82,7 @@ categories: CSharp
 	}   
 
 # Using .NET 4's Lazy<T> type
-推荐使用这个，Lazy的默认构造函数是线程安全的。由于单例的构造函数是私有的，所以初始化Lazy时，必须传入一个匿名函数用于实例化这个单例类对象。
+推荐使用这个，Lazy的默认构造函数是线程安全的。由于单例的构造函数是私有的，所以初始化Lazy时，必须传入一个匿名函数用于实例化这个单例类对象。记住类一定要是封闭的sealed。
 
 	public sealed class Singleton5    
 	{    
