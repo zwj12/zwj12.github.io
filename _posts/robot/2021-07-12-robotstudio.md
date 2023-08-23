@@ -14,4 +14,4 @@ categories: robot
 ![日志文件夹](/assets/robot/Stopwatch.png)
 
 # 删除License
-RD /S /Q "%programdata%\ABB\RobotStudio\7.x" "%program files(x86)%\ABB\RobotStudio 2021\Bin\RobotStudio.Installer.exe" -InitLicenseStorage
+RD /S /Q "%programdata%\ABB\RobotStudio\7.x" "%program files(x86)%\ABB\RobotStudio 2023\Bin\RobotStudio.Installer.exe" -InitLicenseStorage
