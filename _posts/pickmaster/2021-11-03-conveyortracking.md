@@ -20,3 +20,15 @@ categories: PickMaster
 
 # Activation and Deactivation only done from Rapid
 RW6.13的Motion -> Mechanical Unit中有一个新的设置：Activation and Deactivation only done from Rapid，该设置可以确保程序在移动指针时，外轴不会被自动激活或者停用
+
+# WaitWObj wobjCNV1 & DropWObj wobjCNV1
+## c1CntFromEnc自动触发
+每次c1CntFromEnc变化，都会导致c1ObjectsInQ加1，同时机器人内部有一个队列，存储着每一次的变化值，当使用WaitWObj wobjCNV1 指令时，会获取队列中存储的最小c1CntFromEnc值，并关联到CNV1的坐标上，也就是用该最小的c1CntFromEnc值作为CNV1传送带的原点或零位，可以从示教器的Job界面看出，传送带的坐标为c1Counts-c1CntFromEnc，当运行DropWObj时，CNV1的坐标会变为0，注意只有真正DropWObj才会变为0，如果之前没有WaitWObj，那么重复的DropWObj不会改变传送带的坐标位置值。
+
+![日志文件夹](/assets/pickmaster/WaitWObjSignals.png) 
+
+## c1NewObjStrobe手动触发
+当手动触发c1NewObjStrobe信号时，会删除队列里所有数据，然后把当前的c1Counts值赋值到c1CntToEnc,同时发出脉冲信号c1CntToEncStr。生产wobj供WaitWObj指令返回。
+
+![日志文件夹](/assets/pickmaster/WaitWObjc1NewObjStrobe.png) 
+

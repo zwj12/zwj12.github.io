@@ -28,6 +28,33 @@ If you are storing the password for reuse, such as supplying it to a third party
 
     string plaintext2 = Encoding.UTF8.GetString(plaintextBytes2).Trim(); 
 
+
+    public class EncryptionService : IEncryptionService
+    {
+        public byte[] Encrypt(byte[] bytesUnprotected, byte[] entropy = null)
+        {
+            byte[] bytesProtected = ProtectedData.Protect(bytesUnprotected, entropy, DataProtectionScope.CurrentUser);
+            return bytesProtected;
+        }
+
+        public byte[] Decrypt(byte[] bytesProtected, byte[] entropy = null)
+        {
+            byte[] bytesUnprotected = ProtectedData.Unprotect(bytesProtected, entropy, DataProtectionScope.CurrentUser);
+            return bytesUnprotected;
+        }                 
+
+    }   
+
+    private void btnEncrypt_Click(object sender, RoutedEventArgs e)
+    {
+        this.txtEncrypted.Text = Convert.ToBase64String(encryptionService.Encrypt(Encoding.UTF8.GetBytes(this.txtPlainText.Text)));
+    }
+
+    private void btnDecrypt_Click(object sender, RoutedEventArgs e)
+    {
+        this.txtDecrypted.Text = Encoding.UTF8.GetString(encryptionService.Decrypt(Convert.FromBase64String(this.txtEncrypted.Text)));
+    }
+
 # Credential Manager
 ## C++ codes
 
