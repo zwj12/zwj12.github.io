@@ -3,7 +3,7 @@ layout: post
 title: "FlexPendant SDK"
 date: 2021-04-18 17:41:00 +0800
 author: Michael
-categories: Robot
+categories: robot
 ---
 
 # 创建新项目
