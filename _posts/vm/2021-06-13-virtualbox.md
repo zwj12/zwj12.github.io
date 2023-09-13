@@ -30,3 +30,7 @@ categories: VM
 # 虚拟系统Win10激活
 虚拟机系统如果需要激活，需要使用桥接网卡方式联网，如果使用NAT方式联网激活，会导致激活失败。  
 ![日志文件夹](/assets/windows/ActivateWin10InVirtualOKByBridgedAdapter.png)  
+
+# Import Virtual Appliance
+导入VirtualBox的ova文件时，需要修改名称，磁盘名称，文件夹位置等参数。  
+![日志文件夹](/assets/vm/ImportVirtualAppliance.png)  

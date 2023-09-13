@@ -364,3 +364,9 @@ If you are storing the password for reuse, such as supplying it to a third party
         else
             txtMsg.Text = "删除失败";
     }
+
+# Windows Data Protection
+
+[ProtectedData Class](https://learn.microsoft.com/en-us/dotnet/api/system.security.cryptography.protecteddata?view=netframework-4.8)
+
+[Windows Data Protection](https://learn.microsoft.com/en-us/previous-versions/ms995355(v=msdn.10)?redirectedfrom=MSDN)

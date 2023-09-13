@@ -106,3 +106,20 @@ The compiler searches for directories in the following order:
 ![日志文件夹](/assets/cpp/VCIncludeDirectories.png)  
 ![日志文件夹](/assets/cpp/AdditionalIncludeDirectories.png)  
 
+# Microsoft.Cpp.x64.user.props & Microsoft.Cpp.Win32.user.props
+Microsoft.Cpp.*.user.props were introduced in VS2010 as a replacement to VS2008's VC Directories page in Tools - Options and a way to migrate the user options from those releases. VS2019 does not support this conversion anymore and does not create empty Microsoft.Cpp.*.user.props either. The projects will still import those files in they exist, but we recommend using new ways of defining common properties which allow better control and maintanability.
+
+	C:\Users\Michael\AppData\Local\Microsoft\MSBuild\v4.0\Microsoft.Cpp.Win32.user.props
+	C:\Users\Michael\AppData\Local\Microsoft\MSBuild\v4.0\Microsoft.Cpp.x64.user.props
+
+![日志文件夹](/assets/cpp/Microsoft.Cpp.Win32.user.props.png) 
+
+
+# The problem with *.user files
+
+Past versions of Visual Studio used global property sheets that had a .user file name extension and were located in the \<userprofile>\AppData\Local\Microsoft\MSBuild\v4.0\ folder. We no longer recommend these files because they set properties for project configurations on a per-user, per-computer basis. Such "global" settings can interfere with builds, especially when you are targeting more than one platform on your build computer. For example, if you have both an MFC project and Windows Phone project, the .user properties would be invalid for one of them. Reusable property sheets are more flexible and more robust.
+
+Although .user files are still installed by Visual Studio and participate in property inheritance, they're empty by default. The best practice is to delete any reference to them in Property Manager to ensure that your projects operate independently of any per-user, per-computer settings. This practice is important to ensure correct behavior in a SCC (source code control) environment.
+
+# Share or reuse Visual Studio project settings
+To create a custom group of settings that you can share with others or reuse in multiple projects, use Property Manager to create a property sheet (a .props file) to store the settings for each kind of project that you want to be able to reuse or share with others. Using property sheets are far less error-prone than other ways of creating "global" settings.
