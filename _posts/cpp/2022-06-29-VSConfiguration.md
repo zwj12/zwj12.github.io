@@ -69,7 +69,7 @@ C++程序的启动运行，需要C++运行时环境。C++运行时为C++程序�
 The C run-time libraries for Visual Studio support all versions of Windows and Windows Server that are still in extended support. Libraries are available for x86, x64, and ARM64. All of these operating systems support the Windows desktop API (Win32) and provide Unicode support. In addition, any Win32 application can use a multibyte character set (MBCS).
 
 # MSVCv141
-如果需要Visual Studio 2022支持Visual Studio 2017编译器编译，需要添加MSVC v141 - 2017 C++ 和 C++ MFC for v141 build tools两个选项。
+如果需要Visual Studio 2022支持Visual Studio 2017编译器编译，需要添加MSVC v141 - VS 2017 C++ x86/x64 build tools和 C++ MFC for v141 build tools (x86 & x64)两个选项。
 
 ![日志文件夹](/assets/cpp/PlatformToolset.png)  
 ![日志文件夹](/assets/cpp/MSVCv141.png)  
@@ -114,6 +114,15 @@ Microsoft.Cpp.*.user.props were introduced in VS2010 as a replacement to VS2008'
 
 ![日志文件夹](/assets/cpp/Microsoft.Cpp.Win32.user.props.png) 
 
+# Property Manager
+| Name | directory | file | Description |
+|:-----------|:-----------|:-----------|:-----------|
+| Microsoft.Cpp.Win32.user | %LOCALAPPDATA%\Microsoft\MSBuild\v4.0 | Microsoft.Cpp.Win32.user.props | |
+| Microsoft.Cpp.Win32.user | %LOCALAPPDATA%\Microsoft\MSBuild\v4.0 | Microsoft.Cpp.x64.user.props | |
+| Microsoft.Cpp | C:\Program Files\Microsoft Visual Studio\2022\Professional\Msbuild\Microsoft\VC\v170 | Microsoft.Cpp.props | |
+| Microsoft.Cpp.Default | C:\Program Files\Microsoft Visual Studio\2022\Professional\Msbuild\Microsoft\VC\v170 | Microsoft.Cpp.Default.props | |
+
+![日志文件夹](/assets/cpp/VSDefaultProps.png) 
 
 # The problem with *.user files
 
@@ -123,3 +132,21 @@ Although .user files are still installed by Visual Studio and participate in pro
 
 # Share or reuse Visual Studio project settings
 To create a custom group of settings that you can share with others or reuse in multiple projects, use Property Manager to create a property sheet (a .props file) to store the settings for each kind of project that you want to be able to reuse or share with others. Using property sheets are far less error-prone than other ways of creating "global" settings.
+
+# Macro
+| Name | Description |
+|:-----------|:-----------|
+| ConfigurationName	| 配置名字，通常是Debug或者Release |
+| IntDir | 编译器使用的中间目录，产出obj文件 |
+| OutDir | 链接器使用的输出目录 |
+| ProjectDir | 项目目录 |
+| ProjectName | 项目名字 |
+| SolutionDir | 解决方案目录 |
+| TargetDir | 目标输出文件所在的目录 |
+| TargetExt | 目标输出的扩展名 |
+| TargetFileName | 目标输出文件名，包括扩展名 |
+| TargetName | 目标输出名，不包括扩展名 |
+| TargetPath | 目标输出文件的全路径名 |
+
+# Post-Build Event
+xcopy /y /d "..\..\MathLibrary\$(IntDir)MathLibrary.dll" "$(OutDir)"

@@ -11,8 +11,23 @@ categories: CPP
 ![日志文件夹](/assets/cpp/EnvironmentVariable.png)  
 ![日志文件夹](/assets/cpp/EnvironmentVariableMacro.png)  
 
-# pragma once
+# 避免同一个头文件被包含（include）多次
+为了避免同一个头文件被包含（include）多次，C/C++中有两种宏实现方式：一种是#ifndef方式；另一种是#pragma once方式。
+
+## #pragma once
 pragma once可以放置在头文件中任何位置，但是通常推荐放置在开头位置。
+
+	#pragma once
+
+## #ifndef
+
+	#ifndef  __SOMEFILE_H__
+
+	#define   __SOMEFILE_H__
+
+	... ... // 声明、定义语句
+
+	#endif
 
 # pragma comment(lib,“Ws2_32.lib”)
 表示链接Ws2_32.lib这个库。
