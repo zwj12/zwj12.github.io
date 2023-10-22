@@ -135,3 +135,19 @@ WIN32宏   --只要包含了 Windows.h，那么 WIN32 常量是肯定定义了�
 	_WIN64    --只有64位程序才有
 
 WIN32/_WIN32 可以用来判断是否 Windows 系统（对于跨平台程序），而 _WIN64 用来判断编译环境是 x86 还是 x64
+
+# 预编译器常量
+__FILE__为预编译器常量，返回当前编译的文件名，标准C++推荐编译器实现时预定义的宏, 是由编译器定义的宏，表示当前文件名, 常用于调试。报告错误时，我们可以方便地知道是哪个文件出错。
+__LINE__编译器在编译的文件的第几行；
+__DATE__返回当前的日期Jul-20-2004；
+__TIME__返回当前的时间hh:mm:ss；   
+__TIMESTAMP__的预定义的编译器宏始终返回时间戳信息在太平洋标准的时间内无论本地时间和CL.EXE 的运行位置在计算机上的时区。     
+__STDC__条件编译，意思是：如果定义了标准C或c++，那么编译这句话后面直到#endif 以前的源代码。
+_STDC__cplusplus这两个都是标准宏，_STDC_表示是是否符合标准C
+_cplusplus表示是否是C++
+
+	#ifdef _DEBUG //如果定义了_DEBUG
+	#define new DEBUG_NEW //则定义new为DEBUG_NEW
+	#undef THIS_FILE //反定义，即清除THIS_FILE的宏定义
+	static char THIS_FILE[] = __FILE__;
+	#endif//结束宏定义     

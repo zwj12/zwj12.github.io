@@ -170,3 +170,37 @@ categories: CSharp
     [XmlArrayItem(ElementName = "ApplyZ-GripLocation")]
     public List<int> ZGripLocation { get; set; }
 
+# Example
+
+    public static class XmlHelper
+    {
+
+        public static T LoadFromXml<T>(string filePath)
+        {
+            object result = null;
+            if (File.Exists(filePath))
+            {
+                using (StreamReader reader = new StreamReader(filePath))
+                {
+                    XmlSerializer xmlSerializer = new XmlSerializer(typeof(T));
+                    result = xmlSerializer.Deserialize(reader);
+                }
+            }
+            return (T)result;
+        }
+
+        public static void SaveToXml<T>(string filePath, T sourceObj)
+        {
+            if (!string.IsNullOrWhiteSpace(filePath) && sourceObj != null)
+            {
+                using (StreamWriter writer = new StreamWriter(filePath))
+                {
+                    XmlSerializer xmlSerializer = new XmlSerializer(sourceObj.GetType());
+                    XmlSerializerNamespaces nameSpace = new XmlSerializerNamespaces();
+                    nameSpace.Add("", ""); //replace default namespace with empty namespace
+                    xmlSerializer.Serialize(writer, sourceObj, nameSpace);
+                }
+            }
+        }
+
+    }
