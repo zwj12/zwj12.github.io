@@ -14,7 +14,7 @@ categories: CPP
 ![日志文件夹](/assets/cpp/DebuggingCommandArguments.png)  
 
 # CustomBuildStep
-可以设置项目的自定义事件，这样可以在Build时自动运行一些脚本。如可以提前把.h文件复制到某一个文件夹下。    
+可以设置项目的自定义事件，这样可以在Build时自动运行一些脚本。如可以提前把.h文件复制到某一个文件夹下。Outputs里设置的文件名用于监控是否要运行指令，当该文件没有更新时，就不会运行该指令，只有发现该文件有变化时，才会运行该指令，可以提高编译效率。    
 
 	cd .
 	if not exist "$(ObjDir)" md "$(ObjDir)"
