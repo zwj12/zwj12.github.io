@@ -27,10 +27,12 @@ categories: Develop
 # git merge --squash feature
 feature分支合并到master分支
 
+	git branch  
 	git checkout master
+	git pull
 	git merge --squash feature
 	git commit -m "Merge feature" 
-
-	//?
+	git push
 	git checkout feature
-	git merge master​​​
+	git merge master
+	git push​​​
