@@ -28,11 +28,11 @@ categories: Develop
 feature分支合并到master分支
 
 	git branch  
-	git checkout master
+	git checkout wikiMaster
 	git pull
-	git merge --squash feature
-	git commit -m "Merge feature" 
+	git merge --squash Michael/dev
+	git commit -m "Merge Michael/dev" 
 	git push
-	git checkout feature
-	git merge master
+	git checkout Michael/dev
+	git merge wikiMaster
 	git push​​​
