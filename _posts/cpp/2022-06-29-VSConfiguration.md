@@ -150,3 +150,8 @@ To create a custom group of settings that you can share with others or reuse in 
 
 # Post-Build Event
 xcopy /y /d "..\..\MathLibrary\$(IntDir)MathLibrary.dll" "$(OutDir)"
+
+# SDL Checks 启用附加安全检查
+建议把改功能启用，该功能会把部分警告级别升级为错误级别，增加代码安全性。
+
+![日志文件夹](/assets/cpp/SDLChecks.png) 

@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "python"
+title: "Installation"
 date: 2023-11-03 12:54:00 +0800
 author: Michael
 categories: Python
