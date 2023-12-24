@@ -19,9 +19,17 @@ auto_ptr是用于C++11之前的智能指针。由于 auto_ptr 基于排他所有
 1. 不支持对象数组的操作
 
 # unique_ptr 
-C++11用更严谨的unique_ptr 取代了auto_ptr！
+C++11用更严谨的unique_ptr 取代了auto_ptr。
+
+    unique_ptr<int> pInt(new int(5));
+    cout << *pInt;
 
 # shared_ptr
 可以记录引用特定内存对象的智能指针数量，当复制或拷贝时，引用计数加1，当智能指针析构时，引用计数减1，如果计数为零，代表已经没有指针指向这块内存，那么我们就释放它！这就是 shared_ptr 采用的策略！
 
 # weak_ptr
+
+# shared_ptr、unique_ptr以及weak_ptr
+- shared_ptr允许多个指针指向同一个对象 
+- unique_ptr则“独占”所指向的对象
+- weak_ptr则是一种弱引用，指向shared_ptr所管理的对象

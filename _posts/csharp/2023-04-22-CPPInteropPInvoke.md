@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "PInvoke"
+title: "C++ Interop PInvoke"
 date: 2023-04-22 10:36:00 +0800
 author: Michael
 categories: CSharp
@@ -81,3 +81,30 @@ Non-blittable 类型	描述
     StringBuilder strPATH_VBF30 = new StringBuilder(255);
     GetPrivateProfileString("PATH", "VBF30", "Michael", strPATH_VBF30, 255, @"C:\ProgramData\ABB\System\zenon6.ini");
     WritePrivateProfileString("PATH", "VBF30", "Michael", @"C:\ProgramData\ABB\System\zenon6.ini");
+
+# FindWindowEx
+在窗口列表中寻找与指定条件相符的第一个子窗口 。
+- hwndParent：要查找的子窗口所在的父窗口的句柄，如果hwndParent为 0 ，则函数以桌面窗口为父窗口，查找桌面窗口的所有子窗口。
+- hwndChildAfter ：子窗口句柄。查找从在Z序中的下一个子窗口开始。如果HwndChildAfter为NULL，查找从hwndParent的第一个子窗口开始。如果hwndParent 和 hwndChildAfter同时为NULL，则函数查找所有的顶层窗口及消息窗口。
+- lpszClass：指向一个指定了类名的空结束字符串。
+- lpszWindow：指向一个指定了窗口名（窗口标题）的空结束字符串。如果该参数为 NULL，则为所有窗口全匹配。
+
+        [DllImport("user32.dll")]
+        public static extern IntPtr FindWindowEx(IntPtr hwndParent, IntPtr hwndChildAfter, string lpszClass, string lpszWindow);
+
+        Process notepadProccess = Process.Start("notepad");
+        notepadProccess.WaitForInputIdle();
+        IntPtr notepadTextbox = FindWindowEx(notepadProccess.MainWindowHandle, IntPtr.Zero, "Edit", null);
+        SendMessage(notepadTextbox, WM_SETTEXT, 0, stringBuilder.ToString());
+
+# FindWindow
+FindWindow函数返回与指定字符串相匹配的窗口类名或窗口名的最顶层窗口的窗口句柄。这个函数不会查找子窗口。
+
+    [DllImport("user32.dll", SetLastError = true)]
+    public static extern IntPtr FindWindow(string lpClassName, string lpWindowName);
+
+    IntPtr notepadTextbox = FindWindow(null, "Image Dialog.txt - Notepad");
+
+# SendMessage
+        [DllImport("user32.dll")]
+        public static extern int SendMessage(IntPtr hWnd, int uMsg, int wParam, string lParam);

@@ -151,3 +151,20 @@ _cplusplus表示是否是C++
 	#undef THIS_FILE //反定义，即清除THIS_FILE的宏定义
 	static char THIS_FILE[] = __FILE__;
 	#endif//结束宏定义     
+
+# C语言宏定义中 # 和 ## 符号的用法
+## 一个#的作用
+一个#的作用就是把后面的参数当做一个字符串，也就是说等同于把后面的宏变量加上双引号,  #define  PRINT(NAME)  printf(#NAME)这个宏，等同于把NAME加上了双引号“”，即替换成了“NAME”，所以，第一个PRINT可以直接把括号内的内容打印出来。
+
+	#define PRINT(NAME) printf(#NAME)
+
+	PRINT(Hello world);  //printf("Hello world");
+
+## 两个##的作用
+两个##是连接符，即把两个宏变量拼接到一起。定义了两个宏LINK和POWER，LINK直接把两个宏变量拼接起来，所以n等于1234；POWER把两个宏变量和e顺次拼接，所以n2等于2e3，也就是等于2000。
+
+	#define LINK(AA,BB) AA##BB
+	#define POWER(AA,BB) AA##e##BB
+
+	int n = LINK(12,34)
+	int n2 = POWER(2,3)

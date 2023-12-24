@@ -42,3 +42,9 @@ Visual Studio通过Configuration Manager管理Build程序时的配置，在Confi
 # 多线程断点调试
 通过断点的条件筛选器可以限制断点在某一个线程中启用。  
  ![日志文件夹](/assets/develop/DebugByThreadID.png)  
+
+# Extensions
+1. ResXManager
+2. GitHub Copilot
+3. GitHub Copilot Chat
+4. COPA-DATA Developer Tools
