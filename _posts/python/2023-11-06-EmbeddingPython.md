@@ -302,7 +302,7 @@ categories: Python
     }
 
 # Py_SetPythonHome & PYTHONHOME & PyConfig.home
-Py_SetPythonHome设置环境变量PYTHONHOME，改函数的功能和直接在操作系统中添加环境变量PYTHONHOME具有同样的功能，主要是指定Python的安装文件夹位置，默认为C:\Program Files\Python312，如果Python的安装位置不在默认位置，可以通过该函数修改。通过设置PyConfig.home也具有同样的作用
+Py_SetPythonHome设置环境变量PYTHONHOME，该函数的功能和直接在操作系统中添加环境变量PYTHONHOME具有同样的功能，主要是指定Python的安装文件夹位置，默认为C:\Program Files\Python312，如果Python的安装位置不在默认位置，可以通过该函数修改。通过设置PyConfig.home也具有同样的作用
 
 ![日志文件夹](/assets/python/PYTHONHOME.png)  
 
@@ -401,3 +401,6 @@ PyConfig_Read is a function in Python's C API that reads the configuration from 
 获取当前Python线程状态，必须获取到GIL时，才能运行该函数，否则直接报错。
 
     PyThreadState* _current = PyThreadState_Get();
+
+# 多线程释放GIL
+    PyEval_ReleaseThread(PyThreadState_Get());
