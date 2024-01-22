@@ -404,3 +404,6 @@ PyConfig_Read is a function in Python's C API that reads the configuration from 
 
 # 多线程释放GIL
     PyEval_ReleaseThread(PyThreadState_Get());
+
+# PyConfig & PyConfig_InitPythonConfig & PyConfig_Clear
+Structure containing most parameters to configure Python. When done, the PyConfig_Clear() function must be used to release the configuration memory.
