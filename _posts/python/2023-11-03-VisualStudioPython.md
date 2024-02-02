@@ -16,8 +16,9 @@ Python的C++扩展后缀名为pyd，而非dll。
 ![日志文件夹](/assets/python/CExtensionFileExtensionpyd.png)  
 
 # Headers and libs
-Additional Include Directories:　C:\Program Files\Python312\include
-Additional Library Directories:　C:\Program Files\Python312\libs
+- Additional Include Directories:　C:\Program Files\Python312\include
+- Additional Library Directories:　C:\Program Files\Python312\libs
+- Additional Dependencies: python312_d.lib / python312.lib
 
 # Python Version Not Officially Support
 当遇到下来情况时，Visual Studio会检测当前的Python版本，并确定是否官方支持，当发现不支持时，会弹出报警框，暂时不清楚如何禁用该报警提示，每次都会打开，很不友好。
