@@ -407,3 +407,26 @@ PyConfig_Read is a function in Python's C API that reads the configuration from 
 
 # PyConfig & PyConfig_InitPythonConfig & PyConfig_Clear
 Structure containing most parameters to configure Python. When done, the PyConfig_Clear() function must be used to release the configuration memory.
+
+# 获取模块名
+    PyObject* p1 = PyObject_GetAttrString(pModule, "__name__");
+    PyObject* repr = PyObject_Repr(p1);
+    PyObject* str = PyUnicode_AsEncodedString(p1, "utf-8", "strict");
+    char* result = PyBytes_AsString(str);
+
+# GIL
+The Python interpreter is not fully thread-safe. In order to support multi-threaded Python programs, there’s a global lock, called the global interpreter lock or GIL, that must be held by the current thread before it can safely access Python objects. Without the lock, even the simplest operations could cause problems in a multi-threaded program.
+
+## Py_Initialize & PyEval_ReleaseThread
+In an application embedding Python, Py_Initialize should be called before using any other Python/C API functions. After Python interpreter is initialized, application must call PyEval_ReleaseThread to release GIL, so than the other thread can apply the GIL.
+
+    Py_Initialize();
+    ... //Do other initialization work.
+    PyEval_ReleaseThread(PyThreadState_Get());
+
+## PyGILState_Ensure & PyGILState_Release
+PyGILState_Ensure ensure that the current thread is ready to call the Python C API regardless of the current state of Python, or of the global interpreter lock. This may be called as many times as desired by a thread as long as each call is matched with a call to PyGILState_Release(). In general, other thread-related APIs may be used between PyGILState_Ensure() and PyGILState_Release() calls as long as the thread state is restored to its previous state before the Release(). 
+
+    PyGILState_STATE state = PyGILState_Ensure();
+    ... //Do other Python operations in the current thread.
+    PyGILState_Release(state);
