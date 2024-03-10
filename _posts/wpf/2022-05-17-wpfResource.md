@@ -11,7 +11,7 @@ categories: WPF
 
 # 图片资源编译
 1. Build Action = Resource, 不能错误的设置为Embedded Resource, 因为Embedded Resource生成操作会在另一个更难访问的位置放置二进制数据。
-2. 不要再Project Properties窗口中使用Resource选项卡。WPF不支持这种类型的资源URI。
+2. 不要在Project Properties窗口中使用Resource选项卡。WPF不支持这种类型的资源URI。
 3. 单独的资源流使用以下格式命名：AssemblyName.g.resources, 该资源目录下，还有WPF xaml文件的数据。
 4. pack URI, WPF使用pack URI语法寻址，地址分为相对URI和绝对URI，相对地址如：`images/winter.jpg`，绝对地址如：`pack://application:,,,/images/winter.jpg`。三个逗号实际上是三个转义的斜杠。所以pack URI实际是以`application:///`开头的。
 
