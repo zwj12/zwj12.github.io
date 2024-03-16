@@ -21,7 +21,7 @@ categories: CPP
         Singleton(const Singleton &) = delete;
         Singleton &operator=(const Singleton &) = delete;
 
-        virtual ~Singleton() { std::cout << "Singleton: call Destructor\n"; }
+        ~Singleton() { std::cout << "Singleton: call Destructor\n"; }
 
         static Singleton &get_instance() { return demo; }
     };

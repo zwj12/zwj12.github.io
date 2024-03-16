@@ -9,12 +9,18 @@ categories: CSharp
 # 无边框
 WPF中自定义的界面的方式可以分为两种，尽量使用 WindowChrome 而不要使用 AllowsTransparency=True： 
 
-1. 使用 AllowsTransparency="True"和WindowStyle="None"，ResizeMode="NoResize"，这种呢就相当于直接把原生非客户区给干掉了，然后我们在内容区域自己去实现非客户区，就会导致窗口自定的行为如：缩放，拖动，停靠边界放大。。。这些功能全都没有了，如果需要的话，是需要自己手动代码添加的。
-2. 使用我们的WindowChrome来自定义界面， 这种方式保留了一个窗口基本的行为，只需要我们重新规划一下客户区和非客户区就行了。
+1. 使用 AllowsTransparency="True"和WindowStyle="None"，ResizeMode="NoResize"，这种呢就相当于直接把原生非客户区给干掉了，然后我们在内容区域自己去实现非客户区，就会导致窗口自定的行为如：缩放，拖动，停靠边界放大。这些功能全都没有了，如果需要的话，是需要自己手动代码添加的。
+2. 使用我们的WindowChrome来自定义界面， 这种方式保留了一个窗口基本的行为，只需要我们重新规划一下客户区和非客户区就行了。此时为了消除隐藏的最大，最小和关闭功能，还需要添加ResizeMode="NoResize"和Closing="Window_Closing"属性。
 
+        ResizeMode="NoResize"
+        <WindowChrome.WindowChrome>
+            <WindowChrome />
+        </WindowChrome.WindowChrome>
 
-    <WindowChrome.WindowChrome>
-        <WindowChrome />
-    </WindowChrome.WindowChrome>
-
-        
+        private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            if (result == MessageBoxResult.None)
+            {
+                e.Cancel = true;
+            }
+        }

@@ -143,7 +143,8 @@ categories: CPP
             return;
 
         // Create a new ThreadMsg
-        shared_ptr<ThreadMsg> threadMsg(new ThreadMsg(MSG_EXIT_THREAD, 0));
+        shared_ptr<UserData> userData(new UserData());
+        shared_ptr<ThreadMsg> threadMsg(new ThreadMsg(MSG_EXIT_THREAD, userData));
 
         // Put exit thread message into the queue
         {
@@ -220,6 +221,10 @@ categories: CPP
             }
 
             assert(msg->msg != NULL);
+            //if (msg->msg == NULL) {
+            //	//DebugBreak();
+            //	AfxDebugBreak();
+            //}
             auto userData = static_pointer_cast<UserData>(msg->msg);
 
             switch (msg->id)
