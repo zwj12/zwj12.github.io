@@ -7,7 +7,7 @@ categories: PLC
 ---
 
 # Studio5000 V32 激活
-1. 卸载自带的FTActivation 4.03.03
+1. 卸载自带的FactoryTalk Activation Manager 4.03.03
 2. 安装FTActivation 4.02.00
 3. 进入操作系统安全模式
 4. 替换FTACommon.dll，flexsvr.exe
