@@ -37,6 +37,11 @@ categories: PickMaster
 ![日志文件夹](/assets/zenon/scadaAddInVisualStudio.png)   
 ![日志文件夹](/assets/zenon/AddInStore.png)   
 
+# DefaultStartMode
+默认AddIn是不自动加载的，需要手动设置DefaultStartMode为Auto才会自动加载Addin
+
+    [AddInExtension("ZenonAddInProjectServiceTest", "Zenon AddIn Project Service Test", DefaultStartMode = DefaultStartupModes.Auto)]
+
 # AddInStore
 该文件夹存储着AddIn的打包程序，当`RT\FILES\zenon\system\AddInCache\DotNet\addin-db-002`文件夹缺失时，会自动解压该文件夹下的scadaAddIn文件，并把dll文件复制到`RT\FILES\zenon\system\AddInCache\DotNet\addins`对应的dll文件夹中。
 

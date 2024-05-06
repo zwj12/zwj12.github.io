@@ -7,16 +7,37 @@ categories: Python
 ---
 
 # 多线程
-
+## Example 1
     import threading
     import time
 
-    def print_numbers():
-        for i in range(5):
+    def print_numbers(start, end):
+        i = start
+        while i < end:
             time.sleep(1)
             print(i)
+            i = i + 1
 
-    thread = threading.Thread(target=print_numbers)
+    thread = threading.Thread(target=print_numbers, args=(1, 6))
+    thread.start()
+    thread.join()
+
+## Example 2
+    import threading
+    import time
+
+    class UtilityClass:
+        def incr(i):
+            return i+1
+            
+    def print_numbers(start, end, utilityClass):
+        i = start
+        while i < end:
+            time.sleep(1)
+            print(i)
+            i = utilityClass.incr(i)
+
+    thread = threading.Thread(target=print_numbers, args=(1, 6, UtilityClass))
     thread.start()
     thread.join()
 
