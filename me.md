@@ -9,7 +9,14 @@ Hi, it's me!
 
 # 安装和查看版本
 ## 安装jekyll和bundler
+Download Ruby+Devkit 3.3.2-1 (x64) and install, 安装过程如果被防火墙挡住，需要使用移动网络，当前github-pages支持版本为2.7.4。
+
+	ridk install and choose MSYS2 and MINGW development tool chain
 	gem install jekyll bundler
+	jekyll -v
+
+## 删除jekyll
+ 	gem uninstall jekyll
 	
 ## 查看版本
 应定期查看软件版本，尽量保持github pages要求的最新版本，查看最新版本的网址为：https://pages.github.com/versions/。  
