@@ -13,6 +13,7 @@ Markdown通过在行首添加1-6个#符号来定义不同级别的标题，最�
 [Link](https://peps.python.org/pep-0257/)
 
 # Table
+表格需要前面空一行或者上一行有换行符，否则有可能是导致显示有问题   
 | Value | Description |
 |:-----------|:-----------|
 | Value | Description |
