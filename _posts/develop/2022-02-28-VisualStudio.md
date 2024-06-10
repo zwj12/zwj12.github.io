@@ -45,6 +45,4 @@ Visual Studio通过Configuration Manager管理Build程序时的配置，在Confi
 
 # Extensions
 1. ResXManager
-2. GitHub Copilot
-3. GitHub Copilot Chat
-4. COPA-DATA Developer Tools
+2. COPA-DATA Developer Tools

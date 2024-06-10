@@ -9,7 +9,7 @@ Hi, it's me!
 
 # 安装和查看版本
 ## 安装jekyll和bundler
-Download Ruby+Devkit 3.3.2-1 (x64) and install, 安装过程如果被防火墙挡住，需要使用移动网络，当前github-pages支持版本为2.7.4。
+Download Ruby+Devkit 3.3.2-1 (x64) and install, 安装过程如果被防火墙挡住，需要使用移动网络，当前github-pages支持版本为2.7.4。如果安装3.3.2，测试发现wdm依赖包会安装不成功，不清楚什么原因。
 
 	ridk install and choose MSYS2 and MINGW development tool chain
 	gem install jekyll bundler
