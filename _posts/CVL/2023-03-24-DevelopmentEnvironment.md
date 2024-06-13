@@ -68,3 +68,24 @@ Visual Studio C++ -> Properties -> C/C++ -> Preprocessor -> Preprocessor Definit
     	cfInitializeDisplayResources();
         ...
     }
+
+# CVL9支持VS2022
+需要修改CVL9的头文件, C:\Program Files\Cognex\CVL\defs\ch_cvl\defs.h
+
+    //origin
+    #elif cmCompiler == cm_msvc && cmCompilerVer >= 1920
+    #  ifdef _M_X64
+    #    define cmCompilerChar "142_x64"
+    #  else
+    #    define cmCompilerChar "142"
+    #  endif
+    #endif
+
+    //modified
+    #elif cmCompiler == cm_msvc && cmCompilerVer >= 1920
+    #  ifdef _M_X64
+    #    define cmCompilerChar "141_x64"
+    #  else
+    #    define cmCompilerChar "141"
+    #  endif
+    #endif
