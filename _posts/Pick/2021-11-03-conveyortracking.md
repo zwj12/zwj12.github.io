@@ -3,7 +3,7 @@ layout: post
 title: "Conveyor Tracking"
 date: 2021-11-03 08:56:00 +0800
 author: Michael
-categories: PickMaster
+categories: Pick
 ---
 
 # 传送带工作区域划分
