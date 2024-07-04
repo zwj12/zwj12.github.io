@@ -3,7 +3,7 @@ layout: post
 title: "zenon Historian"
 date: 2021-10-15 12:28:00 +0800
 author: Michael
-categories: PickMaster
+categories: zenon
 ---
 
 # Saving cycle

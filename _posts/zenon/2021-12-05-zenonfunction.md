@@ -3,7 +3,7 @@ layout: post
 title: "zenon Functions"
 date: 2021-12-05 15:11:00 +0800
 author: Michael
-categories: PickMaster
+categories: zenon
 ---
 
 # Replace links

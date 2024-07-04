@@ -3,7 +3,7 @@ layout: post
 title: "zenon Extended Trend"
 date: 2021-10-16 17:01:00 +0800
 author: Michael
-categories: PickMaster
+categories: zenon
 ---
 
 # 趋势图
