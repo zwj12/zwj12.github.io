@@ -155,3 +155,9 @@ xcopy /y /d "..\..\MathLibrary\$(IntDir)MathLibrary.dll" "$(OutDir)"
 建议把改功能启用，该功能会把部分警告级别升级为错误级别，增加代码安全性。
 
 ![日志文件夹](/assets/cpp/SDLChecks.png) 
+
+# MT MTd MD MDd
+MT: multithread static
+MTDd: multithread deug static
+MD: multithread dynamic
+MDd: multithread dynamic debug

@@ -46,3 +46,11 @@ Visual Studio通过Configuration Manager管理Build程序时的配置，在Confi
 # Extensions
 1. ResXManager
 2. COPA-DATA Developer Tools
+
+# Encoding
+通过点击Save as按钮，可以使用高级保存选项修改代码的编码格式。UTF-8分带签名和不带签名两种，带签名也就是带BOM信息，不带签名就是不带BOM。BOM，即 Byte Order Mark，也即字节流标记，它是用来让应用程序识别所用的编码的。UTF-8 的 BOM 是 0xEFBBBF。如果用文本编辑工具EditPlus打开，带签名的文件会显示编码为utf-8 + ，不带签名的显示 utf- 8。
+
+- Unicode (UTF-8 with signature) - Codepage 65001
+- Unicode (UTF-8 without signature) - Codepage 65001
+
+ ![日志文件夹](/assets/develop/VisualStudioEncoding.png)  
