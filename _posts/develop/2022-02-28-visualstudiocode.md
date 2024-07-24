@@ -8,5 +8,6 @@ categories: Develop
 
 # Extensions
 1. Markdown Preview Mermaid Support
-
+2. Git Graph
+3. GitHub Copilot
 
