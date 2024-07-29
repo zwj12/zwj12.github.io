@@ -105,3 +105,13 @@ Alternatively, if a sub-program has one and only one output parameter, it can be
 
 # 程序执行过程
 对于TON，CLK_BLINK之类的程序，需要让其每个cycle都一行一次，这样他们FB的out才会刷新数据，如果在某个循环启动TON，然后在后面的循环中使用if语句屏蔽TON的运行，那么TON的out变量是不会自动刷新的。这是PLC程序的原理，需要确保每个cycle都要运行一遍程序。
+
+# 获取系统时间
+## 'HH:MM:SS'
+	t_str:=DAY_TIME(1);
+## 'YYYY/MM/DD'
+	D_str:=DAY_TIME(0);
+## day of the week
+	week_str:=DAY_TIME(2);
+## custom format
+	time_format := DTFORMAT ('Today is %Y/%m/%d - %H:%M:%S');
