@@ -260,3 +260,19 @@ MVVMLight使用了一个应用程序资源实例化了一个.Net类ViewModelLoca
         this.WebSocketConnectCommand.NotifyCanExecuteChanged();
         this.WebSocketCloseCommand.NotifyCanExecuteChanged();
     });
+
+# WPF设计时绑定[Binding时提供智能提示]
+在做WPF过程中，编写前端UI时，如果还没有对接数据来源，可能无法很直观的看见页面呈现效果，设计窗口也无法呈现直观的设计效果，又或者在绑定时VS无法给予属性提示等，那么设计时绑定就可以比较友好的解决这一点。
+
+## 设计时绑定与运行时(普通)绑定区别
+| 类别 | 运行时(普通)绑定 | 设计时绑定 |
+|:-----------|:-----------|:-----------|
+| 编写Binding时是否有提示 | N | Y |
+| 设计界面时是否能看见数据展示效果 | N | Y |
+| 两种绑定是否可以同事兼容 | Y | Y |
+
+## 命名空间
+xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+
+## 设计时数据上下文
+d:DataContext="{x:Static local:DesignInstance.designStudent}"
