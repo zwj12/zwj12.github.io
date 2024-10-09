@@ -21,11 +21,11 @@ categories: VM
 	UUID changed to: 43932de1-3135-4145-a056-9207d3fadb5f
 
 # 启用嵌套VT-x/AMD-V复选框灰色
-	C:\Program Files\Oracle\VirtualBox>vboxmanage.exe list vms
+	C:\Program Files\Oracle\VirtualBox>.\vboxmanage.exe list vms
 	"Win7Test" {892b7e0a-6523-4beb-9026-bc24d8bbdc4e}
 	"Win10Test" {e0e3ab0f-6c16-4f73-a640-9ee3879e124f}
 	
-	C:\Program Files\Oracle\VirtualBox>vboxmanage.exe modifyvm "Win10Test" --nested-hw-virt on
+	C:\Program Files\Oracle\VirtualBox>.\vboxmanage.exe modifyvm "Win10Test" --nested-hw-virt on
 
 # 虚拟系统Win10激活
 虚拟机系统如果需要激活，需要使用桥接网卡方式联网，如果使用NAT方式联网激活，会导致激活失败。  

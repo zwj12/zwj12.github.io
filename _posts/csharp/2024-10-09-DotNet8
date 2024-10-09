@@ -1,0 +1,23 @@
+---
+layout: post
+title: ".NET 8.0"
+date: 2024-10-09 10:36:00 +0800
+author: Michael
+categories: CSharp
+---
+
+# 编译后的文件
+
+| file | Description |
+|:-----------|:-----------|
+| runtimeconfig.json | 对于.NET Core应用程序来说runtimeconfig.json是不可或缺的。它是用来配置运行时的。如果缺少了这个文件，运行dll文件的时候会产生异常 |
+| deps.json | deps.json是一个记录.NET Core中依赖清单的文件。它可以用来配置动态链接的程序集。deps.json文件中定义了动态链接的依赖列表。通常这个文件在Visual Studio中是自动生成，而且在生产环境中也会非常的大。但是它确实是一个纯文本文件，所以我们可以使用任何编辑器编写它。 |
+| *.dll | C# 编译器将 *.cs 文件编译为 *.dll 文件，也被称为程序集文件。程序集文件具有便携可执行文件格式，.NET Core 可以在 Windows、macOS 和 Linux 上执行它。.NET Core app 是一系列 *.dll 文件的集合 (包括少量的配置文件)。 |
+
+# 运行.NET 8.0程序
+我们有两种方式运行.NET 8.0控制台程序，一种是双击exe程序，另一种使用dotnet指令调用dll库。对于linux系统，只能使用dotnet指令调用dll库的方式执行.NET 8.0控制台程序。
+
+    dotnet consoleapp1.dll
+    ./consoleapp1.exe
+
+![日志文件夹](/assets/csharp/dotnet8execute.png)
