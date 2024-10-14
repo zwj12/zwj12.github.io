@@ -10,4 +10,5 @@ categories: Develop
 1. Markdown Preview Mermaid Support
 2. Git Graph
 3. GitHub Copilot
+4. C# Dev Kit
 
