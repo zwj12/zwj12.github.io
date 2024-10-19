@@ -11,4 +11,6 @@ categories: Develop
 2. Git Graph
 3. GitHub Copilot
 4. C# Dev Kit
+5. C/C++
+6. Wind River Studio
 
