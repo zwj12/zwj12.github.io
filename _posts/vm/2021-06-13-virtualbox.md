@@ -63,3 +63,9 @@ categories: VM
 2. 虚拟机之间可以ping通
 3. 虚拟机不能ping通主机
 4. 主机不能ping通虚拟机
+
+# Enable 3D Acceleration
+启用3D加速功能，可能会导致虚拟系统显示不正常，比如窗口的最大化，最小化和关闭按钮不能正常显示。
+
+![日志文件夹](/assets/vm/Enable3DAcceleration.png)  
+![日志文件夹](/assets/vm/MissingWindowButtons.png)  

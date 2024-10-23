@@ -11,6 +11,9 @@ categories: Markdown
 
 Markdown通过在行首添加1-6个#符号来定义不同级别的标题，最多到六级标题。注意#后需要加一个空格。
 
+## Image
+![Pic](/assets/vm/vxworksqemu.png)  
+
 ## link
 
 [Link](https://peps.python.org/pep-0257/)
